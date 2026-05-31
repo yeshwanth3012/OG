@@ -15,34 +15,42 @@ export const stats = [
 export const services = [
   {
     title: "Free Profile Evaluation",
+    image: "/doc-images/image1.png",
     text: "Get a clear review of your academics, budget, goals, and best-fit study abroad opportunities before making a decision."
   },
   {
     title: "1-on-1 Expert Counselling",
+    image: "/doc-images/image2.png",
     text: "Speak with experienced counsellors who help you choose the right country, university, course, and career pathway."
   },
   {
     title: "Test Preparation Support",
+    image: "/doc-images/image3.png",
     text: "Receive preparation guidance for IELTS, PTE, TOEFL, GRE, GMAT, and other requirements for your target destination."
   },
   {
     title: "University Admission Guidance",
+    image: "/doc-images/image4.png",
     text: "From shortlisting to SOPs, LORs, applications, offer letters, and enrollment, we simplify the admission process."
   },
   {
     title: "Education Loan Assistance",
+    image: "/doc-images/image5.png",
     text: "Plan your finances with support for education loans, documentation, and trusted financial guidance."
   },
   {
     title: "Accommodation Assistance",
+    image: "/doc-images/image6.png",
     text: "Find safe, student-friendly accommodation options before you travel abroad."
   },
   {
     title: "Pre & Post Departure Support",
+    image: "/doc-images/image7.png",
     text: "Get support for visa guidance, travel planning, arrival preparation, and early settling-in questions."
   },
   {
     title: "Enrollment & Visa Assistance",
+    image: "/doc-images/image8.png",
     text: "Complete university onboarding, document checks, visa filing, and formalities with confidence."
   }
 ];
@@ -112,7 +120,7 @@ export const blogs = [
   {
     slug: "life-of-an-indian-student-in-the-usa",
     title: "Life of an Indian Student in the USA",
-    image: "/doc-images/image8.png",
+    image: "/blog-images/life-usa.jpeg",
     excerpt:
       "Studying in the USA is a journey of independence, emotion, hard work, friendships, and personal growth.",
     body: [
@@ -125,7 +133,7 @@ export const blogs = [
   {
     slug: "opt-and-stem-opt-explained",
     title: "OPT & STEM OPT Explained",
-    image: "/doc-images/image3.png",
+    image: "/blog-images/global-landmarks.jpeg",
     excerpt:
       "Understand how OPT and STEM OPT help international students gain real work experience in the USA.",
     body: [
@@ -138,7 +146,7 @@ export const blogs = [
   {
     slug: "top-stem-courses-in-the-usa",
     title: "Top STEM Courses in the USA",
-    image: "/doc-images/image5.png",
+    image: "/blog-images/global-pathways.jpeg",
     excerpt:
       "STEM programs remain a strong choice for students seeking high-demand careers and extended work opportunities.",
     body: [
@@ -151,7 +159,7 @@ export const blogs = [
   {
     slug: "why-the-uk-is-still-a-top-destination",
     title: "Why the UK is Still a Top Destination",
-    image: "/doc-images/image2.png",
+    image: "/blog-images/uk-top-destination-new.jpeg",
     excerpt:
       "The UK continues to attract students through academic reputation, shorter degrees, and global recognition.",
     body: [
@@ -163,7 +171,7 @@ export const blogs = [
   {
     slug: "top-in-demand-jobs-in-the-uk",
     title: "Top In-Demand Jobs in the UK",
-    image: "/doc-images/image1.png",
+    image: "/blog-images/uk-jobs.jpeg",
     excerpt:
       "Career planning matters. Students should connect course choices with in-demand roles and employer needs.",
     body: [
@@ -175,7 +183,7 @@ export const blogs = [
   {
     slug: "rankings-vs-career-opportunities",
     title: "Rankings vs Career Opportunities",
-    image: "/doc-images/image7.png",
+    image: "/blog-images/rankings-vs-careers-new.jpeg",
     excerpt:
       "A high ranking is useful, but career outcomes, location, fees, internships, and course fit matter too.",
     body: [
@@ -187,7 +195,7 @@ export const blogs = [
   {
     slug: "post-study-work-and-pr-in-australia",
     title: "Post-Study Work & PR Opportunities in Australia",
-    image: "/doc-images/image6.png",
+    image: "/blog-images/australia-pr-work.jpeg",
     excerpt:
       "Australia is attractive for practical education, post-study options, and pathways that support career growth.",
     body: [
@@ -199,7 +207,7 @@ export const blogs = [
   {
     slug: "before-studying-in-australia",
     title: "Everything You Need to Know Before Studying in Australia",
-    image: "/doc-images/image4.png",
+    image: "/blog-images/australia-guide.jpeg",
     excerpt:
       "Know the essentials before applying: courses, fees, living costs, visa steps, work rules, and accommodation.",
     body: [
@@ -211,7 +219,7 @@ export const blogs = [
   {
     slug: "biggest-myth-about-studying-in-europe",
     title: "Biggest Myth About Studying in Europe",
-    image: "/doc-images/image5.png",
+    image: "/blog-images/europe-myths-primary.jpeg",
     excerpt:
       "Europe is not one fixed experience. Costs, languages, programs, careers, and rules differ by country.",
     body: [
@@ -223,7 +231,7 @@ export const blogs = [
   {
     slug: "benefits-of-studying-in-europe",
     title: "Benefits of Studying in Europe",
-    image: "/doc-images/image1.png",
+    image: "/blog-images/europe-myths-secondary.jpeg",
     excerpt:
       "Europe offers academic diversity, cultural exposure, affordability, mobility, and specialized career pathways.",
     body: [
