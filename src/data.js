@@ -58,47 +58,47 @@ export const services = [
 export const destinations = [
   {
     country: "USA",
-    image: "/doc-images/image3.png",
+    image: "/flags/usa.svg",
     text: "A destination where innovation meets opportunity, with leading universities, research exposure, STEM pathways, and global career networks."
   },
   {
     country: "UK",
-    image: "/doc-images/image2.png",
+    image: "/flags/uk.svg",
     text: "A strong academic destination known for respected degrees, shorter programs, multicultural campuses, and industry-connected learning."
   },
   {
     country: "Canada",
-    image: "/doc-images/image4.png",
+    image: "/flags/canada.svg",
     text: "Popular for its student-friendly environment, high-quality education, practical learning, and long-term career possibilities."
   },
   {
     country: "Australia",
-    image: "/doc-images/image6.png",
+    image: "/flags/australia.svg",
     text: "A balanced choice for academic quality, practical exposure, post-study work options, and a vibrant student lifestyle."
   },
   {
     country: "Germany",
-    image: "/doc-images/image5.png",
+    image: "/flags/germany.svg",
     text: "Ideal for engineering, technology, research, affordability, and strong industry integration across Europe."
   },
   {
     country: "Ireland",
-    image: "/doc-images/image1.png",
+    image: "/flags/ireland.svg",
     text: "Europe's fast-growing innovation hub, connecting students to technology, finance, pharma, and global employers."
   },
   {
     country: "New Zealand",
-    image: "/doc-images/image7.png",
+    image: "/flags/new-zealand.svg",
     text: "A future-focused education destination with personalized learning, safety, natural beauty, and a balanced student life."
   },
   {
     country: "France",
-    image: "/doc-images/image5.png",
+    image: "/flags/france.svg",
     text: "A global center for creativity, business, culture, luxury, and internationally recognized education."
   },
   {
     country: "European Destinations",
-    image: "/doc-images/image1.png",
+    image: "/flags/europe.svg",
     text: "Explore Europe for affordable education, cultural exposure, specialized programs, and career mobility across diverse economies."
   }
 ];
