@@ -76,9 +76,9 @@ function Footer() {
       </div>
       <div>
         <h3>Contact</h3>
+        <p>{site.location}</p>
         <p>{site.email}</p>
         <p>{site.phones.join(", ")}</p>
-        <p>{site.location}</p>
       </div>
       <div>
         <h3>Explore</h3>
