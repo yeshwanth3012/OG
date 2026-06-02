@@ -134,7 +134,7 @@ function CTASection({ title = "Ready to start your study abroad journey?", text 
 
 function Hero() {
   return (
-    <section className="hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(5, 18, 36, 0.86), rgba(5, 18, 36, 0.5)), url(${images.hero})` }}>
+    <section className="hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(22, 39, 61, 0.9), rgba(22, 39, 61, 0.56)), url(${images.hero})` }}>
       <div className="hero-copy">
         <p className="eyebrow">Powered by OG Infinitum</p>
         <h1>Study abroad guidance built around your future.</h1>
@@ -460,7 +460,7 @@ function ContactForm() {
       form.reset();
       setState({ status: "success", message: "Thanks. Your enquiry has been sent. Our counsellor will contact you soon." });
     } catch {
-      setState({ status: "error", message: `Email service is not configured yet. Please email ${site.email} or use WhatsApp.` });
+      setState({ status: "error", message: `Form submission is not available right now. Please email ${site.email} or use WhatsApp.` });
     }
   }
 
@@ -510,7 +510,7 @@ function EligibilityForm() {
       form.reset();
       setState({ status: "success", message: "Eligibility request submitted. Our team will review your profile and contact you." });
     } catch {
-      setState({ status: "error", message: `Email service is not configured yet. Please email ${site.email} or use WhatsApp.` });
+      setState({ status: "error", message: `Form submission is not available right now. Please email ${site.email} or use WhatsApp.` });
     }
   }
 

@@ -16,25 +16,25 @@ const photo = (id, params = "auto=format&fit=crop&w=1200&q=82") =>
   `https://images.unsplash.com/${id}?${params}`;
 
 export const images = {
-  hero: photo("photo-1522202176988-66273c2fd55f", "auto=format&fit=crop&w=1800&q=85"),
-  about: photo("photo-1551836022-d5d88e9218df"),
-  services: photo("photo-1523240795612-9a054b0db644"),
-  destinations: photo("photo-1503676260728-1c00da094a0b"),
-  blog: photo("photo-1523580846011-d3a5bc25702b"),
-  eligibility: photo("photo-1543269865-cbf427effbad"),
-  contact: photo("photo-1560264280-88b68371db39"),
-  cta: photo("photo-1517486808906-6ca8b3f04846", "auto=format&fit=crop&w=1800&q=82")
+  hero: photo("photo-1509062522246-3755977927d7", "auto=format&fit=crop&w=1800&q=85"),
+  about: photo("photo-1519389950473-47ba0277781c"),
+  services: photo("photo-1516321318423-f06f85e504b3"),
+  destinations: photo("photo-1488646953014-85cb44e25828"),
+  blog: photo("photo-1499750310107-5fef28a66643"),
+  eligibility: photo("photo-1522202176988-66273c2fd55f"),
+  contact: photo("photo-1556761175-b413da4baf72"),
+  cta: photo("photo-1529156069898-49953e39b3ac", "auto=format&fit=crop&w=1800&q=82")
 };
 
 export const services = [
   {
     title: "Free Profile Evaluation",
-    image: photo("photo-1523240795612-9a054b0db644"),
+    image: photo("photo-1552664730-d307ca884978"),
     text: "Get a clear review of your academics, budget, goals, and best-fit study abroad opportunities before making a decision."
   },
   {
     title: "1-on-1 Expert Counselling",
-    image: photo("photo-1551836022-d5d88e9218df"),
+    image: photo("photo-1573497491208-6b1acb260507"),
     text: "Speak with experienced counsellors who help you choose the right country, university, course, and career pathway."
   },
   {
@@ -44,7 +44,7 @@ export const services = [
   },
   {
     title: "University Admission Guidance",
-    image: photo("photo-1516321318423-f06f85e504b3"),
+    image: photo("photo-1523580846011-d3a5bc25702b"),
     text: "From shortlisting to SOPs, LORs, applications, offer letters, and enrollment, we simplify the admission process."
   },
   {
@@ -54,7 +54,7 @@ export const services = [
   },
   {
     title: "Accommodation Assistance",
-    image: photo("photo-1522708323590-d24dbb6b0267"),
+    image: photo("photo-1560448204-e02f11c3d0e2"),
     text: "Find safe, student-friendly accommodation options before you travel abroad."
   },
   {
@@ -64,7 +64,7 @@ export const services = [
   },
   {
     title: "Enrollment & Visa Assistance",
-    image: photo("photo-1507537297725-24a1c029d3ca"),
+    image: photo("photo-1450101499163-c8848c66ca85"),
     text: "Complete university onboarding, document checks, visa filing, and formalities with confidence."
   }
 ];
@@ -72,7 +72,7 @@ export const services = [
 export const destinations = [
   {
     country: "USA",
-    image: photo("photo-1564659907532-6b5f98c8e70f"),
+    image: photo("photo-1500530855697-b586d89ba3ee"),
     text: "A destination where innovation meets opportunity, with leading universities, research exposure, STEM pathways, and global career networks."
   },
   {
@@ -92,7 +92,7 @@ export const destinations = [
   },
   {
     country: "Germany",
-    image: photo("photo-1467269204594-9661b134dd2b"),
+    image: photo("photo-1519677100203-a0e668c92439"),
     text: "Ideal for engineering, technology, research, affordability, and strong industry integration across Europe."
   },
   {
@@ -112,7 +112,7 @@ export const destinations = [
   },
   {
     country: "European Destinations",
-    image: photo("photo-1491553895911-0055eca6402d"),
+    image: photo("photo-1467269204594-9661b134dd2b"),
     text: "Explore Europe for affordable education, cultural exposure, specialized programs, and career mobility across diverse economies."
   }
 ];
@@ -134,7 +134,7 @@ export const blogs = [
   {
     slug: "life-of-an-indian-student-in-the-usa",
     title: "Life of an Indian Student in the USA",
-    image: photo("photo-1523580846011-d3a5bc25702b"),
+    image: photo("photo-1517486808906-6ca8b3f04846"),
     excerpt:
       "Studying in the USA is a journey of independence, emotion, hard work, friendships, and personal growth.",
     body: [
@@ -147,7 +147,7 @@ export const blogs = [
   {
     slug: "opt-and-stem-opt-explained",
     title: "OPT & STEM OPT Explained",
-    image: photo("photo-1552664730-d307ca884978"),
+    image: photo("photo-1551434678-e076c223a692"),
     excerpt:
       "Understand how OPT and STEM OPT help international students gain real work experience in the USA.",
     body: [
@@ -160,7 +160,7 @@ export const blogs = [
   {
     slug: "top-stem-courses-in-the-usa",
     title: "Top STEM Courses in the USA",
-    image: photo("photo-1519389950473-47ba0277781c"),
+    image: photo("photo-1531482615713-2afd69097998"),
     excerpt:
       "STEM programs remain a strong choice for students seeking high-demand careers and extended work opportunities.",
     body: [
@@ -173,7 +173,7 @@ export const blogs = [
   {
     slug: "why-the-uk-is-still-a-top-destination",
     title: "Why the UK is Still a Top Destination",
-    image: photo("photo-1513635269975-59663e0ac1ad"),
+    image: photo("photo-1528909514045-2fa4ac7a08ba"),
     excerpt:
       "The UK continues to attract students through academic reputation, shorter degrees, and global recognition.",
     body: [
@@ -185,7 +185,7 @@ export const blogs = [
   {
     slug: "top-in-demand-jobs-in-the-uk",
     title: "Top In-Demand Jobs in the UK",
-    image: photo("photo-1551836022-d5d88e9218df"),
+    image: photo("photo-1556761175-5973dc0f32e7"),
     excerpt:
       "Career planning matters. Students should connect course choices with in-demand roles and employer needs.",
     body: [
@@ -197,7 +197,7 @@ export const blogs = [
   {
     slug: "rankings-vs-career-opportunities",
     title: "Rankings vs Career Opportunities",
-    image: photo("photo-1523240795612-9a054b0db644"),
+    image: photo("photo-1497366754035-f200968a6e72"),
     excerpt:
       "A high ranking is useful, but career outcomes, location, fees, internships, and course fit matter too.",
     body: [
@@ -209,7 +209,7 @@ export const blogs = [
   {
     slug: "post-study-work-and-pr-in-australia",
     title: "Post-Study Work & PR Opportunities in Australia",
-    image: photo("photo-1506973035872-a4ec16b8e8d9"),
+    image: photo("photo-1523482580672-f109ba8cb9be"),
     excerpt:
       "Australia is attractive for practical education, post-study options, and pathways that support career growth.",
     body: [
@@ -221,7 +221,7 @@ export const blogs = [
   {
     slug: "before-studying-in-australia",
     title: "Everything You Need to Know Before Studying in Australia",
-    image: photo("photo-1560264280-88b68371db39"),
+    image: photo("photo-1517048676732-d65bc937f952"),
     excerpt:
       "Know the essentials before applying: courses, fees, living costs, visa steps, work rules, and accommodation.",
     body: [
@@ -233,7 +233,7 @@ export const blogs = [
   {
     slug: "biggest-myth-about-studying-in-europe",
     title: "Biggest Myth About Studying in Europe",
-    image: photo("photo-1491553895911-0055eca6402d"),
+    image: photo("photo-1499856871958-5b9627545d1a", "auto=format&fit=crop&w=1200&q=82&crop=entropy"),
     excerpt:
       "Europe is not one fixed experience. Costs, languages, programs, careers, and rules differ by country.",
     body: [
@@ -245,7 +245,7 @@ export const blogs = [
   {
     slug: "benefits-of-studying-in-europe",
     title: "Benefits of Studying in Europe",
-    image: photo("photo-1502602898657-3e91760cbb34"),
+    image: photo("photo-1473959383413-0537f4960bbd", "auto=format&fit=crop&w=1200&q=82&crop=entropy"),
     excerpt:
       "Europe offers academic diversity, cultural exposure, affordability, mobility, and specialized career pathways.",
     body: [
