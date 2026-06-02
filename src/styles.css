@@ -591,6 +591,10 @@ p {
   padding: 1.4rem;
 }
 
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
 .content-section {
   max-width: 980px;
 }

@@ -72,7 +72,7 @@ function Footer() {
           <img src="/og-logo.svg" alt="Overseas Gateway logo" />
           <span>Overseas Gateway</span>
         </Link>
-        <p>Student-first overseas education counselling backed by transparent guidance, practical planning, and complete support.</p>
+        <p>Powered by OG Infinitum, Built for Global Dreams</p>
       </div>
       <div>
         <h3>Contact</h3>
@@ -279,29 +279,45 @@ function FeatureTiles() {
 }
 
 function About() {
-  usePageMeta("About Us", "Learn about Overseas Gateway, its mission, vision, OG Infinitum connection, and student-first values.");
+  usePageMeta("About Us", "Learn about Overseas Gateway, a dedicated vertical of OG Infinitum built for global education guidance and student success.");
   return (
     <>
-      <PageHero eyebrow="About Us" title="A trusted overseas education partner for confident decisions." text="Overseas Gateway is a dedicated vertical of OG Infinitum, created to help students move beyond confusion and make informed global education choices." image={images.about} />
+      <PageHero eyebrow="About Us" title="Overseas Gateway is powered by OG Infinitum and built for global dreams." text="We empower students to pursue global education and international careers with confidence, clarity, and the right guidance at every step." image={images.about} />
       <section className="split page-band">
         <article className="panel">
-          <p className="eyebrow">Mission</p>
+          <p className="eyebrow">Our Mission</p>
           <h2>Bridge education, future-ready skills, and global career opportunity.</h2>
-          <p>We empower students with the right guidance, awareness, and personalized support to confidently pursue international academic and professional success.</p>
+          <p>Our mission is to empower students with the right guidance, awareness, and overseas education opportunities so they can make confident academic and career decisions.</p>
+          <p>We are committed to creating a well-informed ecosystem for students and parents through innovative, scalable, and transparent educational solutions.</p>
+          <p>Through personalized mentorship, expert counselling, and continuous awareness, we help students unlock their true potential and pursue global academic and professional success.</p>
         </article>
         <article className="panel">
-          <p className="eyebrow">Vision</p>
-          <h2>Build one of India's most trusted student growth ecosystems.</h2>
-          <p>We aspire to connect students with world-class education, global exposure, and the clarity needed to shape meaningful careers abroad.</p>
+          <p className="eyebrow">Our Vision</p>
+          <h2>Build one of India's most trusted and impactful student growth ecosystems.</h2>
+          <p>Our vision is to empower students with career clarity, personalized mentorship, skill development, and future-ready educational support.</p>
+          <p>We aspire to be the gateway to world-class education, global exposure, and limitless opportunities for ambitious students.</p>
+          <p>Through innovation, transparency, and student-centric guidance, we aim to prepare globally competent individuals ready to thrive in an evolving world.</p>
         </article>
       </section>
       <section className="content-section">
-        <SectionHeading eyebrow="Our Story" title="Founded to solve confusion, misinformation, and unclear counselling." />
+        <SectionHeading eyebrow="Our Story" title="A trusted partner for global education decisions." />
         <p>
-          Overseas Gateway was built after recognizing a serious challenge faced by aspiring students: improper counselling, lack of transparency, confusing admission processes, and choices that may not match a student's real potential. We created a platform that prioritizes the student's future over mere admissions.
+          Overseas Gateway, a dedicated vertical of OG Infinitum, was founded after recognizing a growing challenge faced by aspiring students: misinformation, improper counselling, lack of transparency, and confusing admission processes that can lead to wasted time, financial loss, and career decisions that do not align with a student's true potential.
         </p>
         <p>
-          Backed by OG Infinitum, we bring innovation, structure, and transparent mentorship to the entire journey: profile assessment, country selection, university shortlisting, application support, visa guidance, financial planning, accommodation, and pre-departure assistance.
+          We believed students deserved better: a trusted partner that prioritizes their future over mere admissions. With this vision, we created a platform that delivers expert-driven counselling, transparent processes, and personalized mentorship tailored to every student's aspirations, academic background, skills, interests, and long-term career goals.
+        </p>
+        <p>
+          Our approach goes beyond traditional consultancy. We specialize in in-depth student profile assessments that help identify the right courses, universities, and countries best suited for each student's future ambitions.
+        </p>
+        <p>
+          From university shortlisting and application support to visa guidance, financial planning, and pre-departure assistance, we ensure a seamless and stress-free journey at every stage.
+        </p>
+        <p>
+          At Overseas Gateway, we do not simply help students study abroad. We help them unlock opportunities, discover their true potential, and build futures without borders.
+        </p>
+        <p>
+          Backed by the innovation and vision of OG Infinitum, we are committed to opening global pathways for ambitious students and transforming international education dreams into meaningful success stories worldwide.
         </p>
       </section>
       <section className="section tinted">
