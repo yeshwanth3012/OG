@@ -12,45 +12,59 @@ export const stats = [
   { value: "98%", label: "Visa Success Rate" }
 ];
 
+const photo = (id, params = "auto=format&fit=crop&w=1200&q=82") =>
+  `https://images.unsplash.com/${id}?${params}`;
+
+export const images = {
+  hero: photo("photo-1522202176988-66273c2fd55f", "auto=format&fit=crop&w=1800&q=85"),
+  about: photo("photo-1551836022-d5d88e9218df"),
+  services: photo("photo-1523240795612-9a054b0db644"),
+  destinations: photo("photo-1503676260728-1c00da094a0b"),
+  blog: photo("photo-1523580846011-d3a5bc25702b"),
+  eligibility: photo("photo-1543269865-cbf427effbad"),
+  contact: photo("photo-1560264280-88b68371db39"),
+  cta: photo("photo-1517486808906-6ca8b3f04846", "auto=format&fit=crop&w=1800&q=82")
+};
+
 export const services = [
   {
     title: "Free Profile Evaluation",
-    image: "/doc-images/image1.png",
+    image: photo("photo-1523240795612-9a054b0db644"),
     text: "Get a clear review of your academics, budget, goals, and best-fit study abroad opportunities before making a decision."
   },
   {
     title: "1-on-1 Expert Counselling",
-    image: "/doc-images/image2.png",
+    image: photo("photo-1551836022-d5d88e9218df"),
     text: "Speak with experienced counsellors who help you choose the right country, university, course, and career pathway."
   },
   {
     title: "Test Preparation Support",
-    image: "/doc-images/image3.png",
+    image: photo("photo-1434030216411-0b793f4b4173"),
     text: "Receive preparation guidance for IELTS, PTE, TOEFL, GRE, GMAT, and other requirements for your target destination."
   },
   {
     title: "University Admission Guidance",
-    image: "/doc-images/image4.png",
+    image: photo("photo-1516321318423-f06f85e504b3"),
     text: "From shortlisting to SOPs, LORs, applications, offer letters, and enrollment, we simplify the admission process."
   },
   {
     title: "Education Loan Assistance",
-    image: "/doc-images/image5.png",
+    image: photo("photo-1554224155-6726b3ff858f"),
     text: "Plan your finances with support for education loans, documentation, and trusted financial guidance."
   },
   {
     title: "Accommodation Assistance",
-    image: "/doc-images/image6.png",
+    image: photo("photo-1522708323590-d24dbb6b0267"),
     text: "Find safe, student-friendly accommodation options before you travel abroad."
   },
   {
     title: "Pre & Post Departure Support",
-    image: "/doc-images/image7.png",
+    image: photo("photo-1436491865332-7a61a109cc05"),
     text: "Get support for visa guidance, travel planning, arrival preparation, and early settling-in questions."
   },
   {
     title: "Enrollment & Visa Assistance",
-    image: "/doc-images/image8.png",
+    image: photo("photo-1507537297725-24a1c029d3ca"),
     text: "Complete university onboarding, document checks, visa filing, and formalities with confidence."
   }
 ];
@@ -58,47 +72,47 @@ export const services = [
 export const destinations = [
   {
     country: "USA",
-    image: "/flags/usa.svg",
+    image: photo("photo-1564659907532-6b5f98c8e70f"),
     text: "A destination where innovation meets opportunity, with leading universities, research exposure, STEM pathways, and global career networks."
   },
   {
     country: "UK",
-    image: "/flags/uk.svg",
+    image: photo("photo-1513635269975-59663e0ac1ad"),
     text: "A strong academic destination known for respected degrees, shorter programs, multicultural campuses, and industry-connected learning."
   },
   {
     country: "Canada",
-    image: "/flags/canada.svg",
+    image: photo("photo-1517935706615-2717063c2225"),
     text: "Popular for its student-friendly environment, high-quality education, practical learning, and long-term career possibilities."
   },
   {
     country: "Australia",
-    image: "/flags/australia.svg",
+    image: photo("photo-1506973035872-a4ec16b8e8d9"),
     text: "A balanced choice for academic quality, practical exposure, post-study work options, and a vibrant student lifestyle."
   },
   {
     country: "Germany",
-    image: "/flags/germany.svg",
+    image: photo("photo-1467269204594-9661b134dd2b"),
     text: "Ideal for engineering, technology, research, affordability, and strong industry integration across Europe."
   },
   {
     country: "Ireland",
-    image: "/flags/ireland.svg",
+    image: photo("photo-1590089415225-401ed6f9db8e"),
     text: "Europe's fast-growing innovation hub, connecting students to technology, finance, pharma, and global employers."
   },
   {
     country: "New Zealand",
-    image: "/flags/new-zealand.svg",
+    image: photo("photo-1507699622108-4be3abd695ad"),
     text: "A future-focused education destination with personalized learning, safety, natural beauty, and a balanced student life."
   },
   {
     country: "France",
-    image: "/flags/france.svg",
+    image: photo("photo-1502602898657-3e91760cbb34"),
     text: "A global center for creativity, business, culture, luxury, and internationally recognized education."
   },
   {
     country: "European Destinations",
-    image: "/flags/europe.svg",
+    image: photo("photo-1491553895911-0055eca6402d"),
     text: "Explore Europe for affordable education, cultural exposure, specialized programs, and career mobility across diverse economies."
   }
 ];
@@ -120,7 +134,7 @@ export const blogs = [
   {
     slug: "life-of-an-indian-student-in-the-usa",
     title: "Life of an Indian Student in the USA",
-    image: "/blog-images/life-usa.jpeg",
+    image: photo("photo-1523580846011-d3a5bc25702b"),
     excerpt:
       "Studying in the USA is a journey of independence, emotion, hard work, friendships, and personal growth.",
     body: [
@@ -133,7 +147,7 @@ export const blogs = [
   {
     slug: "opt-and-stem-opt-explained",
     title: "OPT & STEM OPT Explained",
-    image: "/blog-images/global-landmarks.jpeg",
+    image: photo("photo-1552664730-d307ca884978"),
     excerpt:
       "Understand how OPT and STEM OPT help international students gain real work experience in the USA.",
     body: [
@@ -146,7 +160,7 @@ export const blogs = [
   {
     slug: "top-stem-courses-in-the-usa",
     title: "Top STEM Courses in the USA",
-    image: "/blog-images/global-pathways.jpeg",
+    image: photo("photo-1519389950473-47ba0277781c"),
     excerpt:
       "STEM programs remain a strong choice for students seeking high-demand careers and extended work opportunities.",
     body: [
@@ -159,7 +173,7 @@ export const blogs = [
   {
     slug: "why-the-uk-is-still-a-top-destination",
     title: "Why the UK is Still a Top Destination",
-    image: "/blog-images/uk-top-destination-new.jpeg",
+    image: photo("photo-1513635269975-59663e0ac1ad"),
     excerpt:
       "The UK continues to attract students through academic reputation, shorter degrees, and global recognition.",
     body: [
@@ -171,7 +185,7 @@ export const blogs = [
   {
     slug: "top-in-demand-jobs-in-the-uk",
     title: "Top In-Demand Jobs in the UK",
-    image: "/blog-images/uk-jobs.jpeg",
+    image: photo("photo-1551836022-d5d88e9218df"),
     excerpt:
       "Career planning matters. Students should connect course choices with in-demand roles and employer needs.",
     body: [
@@ -183,7 +197,7 @@ export const blogs = [
   {
     slug: "rankings-vs-career-opportunities",
     title: "Rankings vs Career Opportunities",
-    image: "/blog-images/rankings-vs-careers-new.jpeg",
+    image: photo("photo-1523240795612-9a054b0db644"),
     excerpt:
       "A high ranking is useful, but career outcomes, location, fees, internships, and course fit matter too.",
     body: [
@@ -195,7 +209,7 @@ export const blogs = [
   {
     slug: "post-study-work-and-pr-in-australia",
     title: "Post-Study Work & PR Opportunities in Australia",
-    image: "/blog-images/australia-pr-work.jpeg",
+    image: photo("photo-1506973035872-a4ec16b8e8d9"),
     excerpt:
       "Australia is attractive for practical education, post-study options, and pathways that support career growth.",
     body: [
@@ -207,7 +221,7 @@ export const blogs = [
   {
     slug: "before-studying-in-australia",
     title: "Everything You Need to Know Before Studying in Australia",
-    image: "/blog-images/australia-guide.jpeg",
+    image: photo("photo-1560264280-88b68371db39"),
     excerpt:
       "Know the essentials before applying: courses, fees, living costs, visa steps, work rules, and accommodation.",
     body: [
@@ -219,7 +233,7 @@ export const blogs = [
   {
     slug: "biggest-myth-about-studying-in-europe",
     title: "Biggest Myth About Studying in Europe",
-    image: "/blog-images/europe-myths-primary.jpeg",
+    image: photo("photo-1491553895911-0055eca6402d"),
     excerpt:
       "Europe is not one fixed experience. Costs, languages, programs, careers, and rules differ by country.",
     body: [
@@ -231,7 +245,7 @@ export const blogs = [
   {
     slug: "benefits-of-studying-in-europe",
     title: "Benefits of Studying in Europe",
-    image: "/blog-images/europe-myths-secondary.jpeg",
+    image: photo("photo-1502602898657-3e91760cbb34"),
     excerpt:
       "Europe offers academic diversity, cultural exposure, affordability, mobility, and specialized career pathways.",
     body: [

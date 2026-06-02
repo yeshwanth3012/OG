@@ -2,9 +2,12 @@
 
 :root {
   --navy: #071f3f;
+  --charcoal: #171a21;
   --navy-2: #0c315f;
   --royal: #1267d8;
   --blue: #1d8bff;
+  --gold: #ffc83d;
+  --gold-dark: #d99d00;
   --sky: #dceeff;
   --ice: #f5f9ff;
   --white: #ffffff;
@@ -29,7 +32,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(180deg, #eef7ff 0%, #ffffff 34%, #f5f9ff 100%);
+  background: #ffffff;
 }
 
 a {
@@ -95,8 +98,8 @@ p {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem clamp(1rem, 4vw, 4.5rem);
-  background: rgba(245, 249, 255, 0.9);
-  border-bottom: 1px solid rgba(23, 48, 77, 0.08);
+  background: rgba(23, 26, 33, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
 }
 
@@ -107,7 +110,7 @@ p {
   gap: 0.75rem;
   min-width: max-content;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--white);
 }
 
 .brand img,
@@ -123,7 +126,7 @@ p {
 }
 
 .brand small {
-  color: var(--royal);
+  color: var(--gold);
   font-size: 0.68rem;
   font-weight: 800;
 }
@@ -137,15 +140,15 @@ p {
 .navbar nav a {
   padding: 0.65rem 0.78rem;
   border-radius: 8px;
-  color: #254866;
+  color: rgba(255, 255, 255, 0.82);
   font-weight: 800;
   font-size: 0.92rem;
 }
 
 .navbar nav a:hover,
 .navbar nav a.active {
-  color: var(--royal);
-  background: rgba(29, 139, 255, 0.1);
+  color: var(--gold);
+  background: rgba(255, 200, 61, 0.1);
 }
 
 .menu-button {
@@ -155,7 +158,7 @@ p {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.08);
   cursor: pointer;
 }
 
@@ -164,7 +167,7 @@ p {
   width: 20px;
   height: 2px;
   margin: 3px auto;
-  background: var(--navy);
+  background: var(--white);
 }
 
 .hero,
@@ -177,20 +180,33 @@ p {
 }
 
 .hero {
+  position: relative;
+  grid-template-columns: minmax(0, 760px);
+  align-content: center;
   min-height: calc(100vh - 76px);
-  background:
-    radial-gradient(circle at 88% 12%, rgba(29, 139, 255, 0.18), transparent 26rem),
-    linear-gradient(135deg, #f5f9ff, #ffffff);
+  background-position: center;
+  background-size: cover;
+  isolation: isolate;
 }
 
 .hero-copy {
   max-width: 760px;
+  padding: clamp(1rem, 2vw, 2rem) 0;
 }
 
 .hero-copy p,
 .page-hero p {
   max-width: 680px;
   font-size: 1.08rem;
+}
+
+.hero h1,
+.hero .eyebrow {
+  color: var(--white);
+}
+
+.hero-copy p {
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .eyebrow {
@@ -227,15 +243,22 @@ p {
 }
 
 .btn-primary {
-  color: var(--white);
-  background: linear-gradient(135deg, var(--royal), var(--blue));
-  box-shadow: 0 16px 34px rgba(18, 103, 216, 0.28);
+  color: #10151f;
+  background: linear-gradient(135deg, var(--gold), #ffe083);
+  box-shadow: 0 16px 34px rgba(255, 200, 61, 0.28);
 }
 
 .btn-secondary {
   color: var(--navy);
   background: var(--white);
   border-color: var(--line);
+}
+
+.hero .btn-secondary,
+.cta-section .btn-secondary {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn:disabled {
@@ -261,12 +284,12 @@ p {
 
 .hero-card {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: clamp(1rem, 5vw, 5rem);
+  bottom: clamp(1rem, 5vw, 4rem);
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  max-width: 280px;
+  max-width: 320px;
   padding: 0.85rem;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--line);
@@ -287,7 +310,9 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding: 0 clamp(1rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
-  margin-top: -2rem;
+  position: relative;
+  z-index: 2;
+  margin-top: -3rem;
 }
 
 .stats-section div {
@@ -296,6 +321,59 @@ p {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+}
+
+.feature-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 5rem) 0;
+  background: #ffffff;
+}
+
+.feature-tile {
+  min-height: 250px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 0;
+  display: grid;
+  align-content: end;
+  box-shadow: 0 16px 42px rgba(7, 31, 63, 0.08);
+}
+
+.feature-tile h2 {
+  color: inherit;
+  font-size: clamp(1.6rem, 2.4vw, 2.5rem);
+}
+
+.feature-tile p {
+  color: inherit;
+}
+
+.feature-tile a {
+  width: max-content;
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  background: #10151f;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 900;
+}
+
+.feature-tile.blue {
+  color: #ffffff;
+  background: #352a93;
+}
+
+.feature-tile.yellow {
+  color: #10151f;
+  background: var(--gold);
+}
+
+.feature-tile.photo {
+  color: #ffffff;
+  background:
+    linear-gradient(rgba(7, 31, 63, 0.42), rgba(7, 31, 63, 0.72)),
+    url("https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=900&q=82") center / cover;
 }
 
 .stats-section strong {
@@ -354,7 +432,7 @@ p {
 .contact-panel {
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: 0 16px 42px rgba(7, 31, 63, 0.08);
 }
 
@@ -378,7 +456,7 @@ p {
   margin: -1.35rem -1.35rem 1.1rem;
   max-width: calc(100% + 2.7rem);
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   border-bottom: 1px solid var(--line);
 }
 
@@ -403,20 +481,18 @@ p {
   width: 42px;
   height: 42px;
   margin-bottom: 1rem;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--navy-2), var(--royal));
-  border-radius: 8px;
+  color: #10151f;
+  background: var(--gold);
+  border-radius: 0;
   font-weight: 900;
 }
 
 .destination-card img {
   width: 100%;
-  height: 190px;
-  object-fit: contain;
-  padding: 1.15rem;
-  background:
-    linear-gradient(135deg, rgba(220, 238, 255, 0.92), rgba(255, 255, 255, 0.96)),
-    linear-gradient(135deg, var(--navy), var(--royal));
+  height: 230px;
+  object-fit: cover;
+  padding: 0;
+  background: #dceeff;
   border-bottom: 1px solid var(--line);
 }
 
@@ -424,7 +500,7 @@ p {
   width: 100%;
   height: 235px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
 }
 
 .destination-card div,
@@ -435,12 +511,12 @@ p {
 .text-link {
   display: inline-flex;
   margin-top: 0.4rem;
-  color: var(--royal);
+  color: var(--gold-dark);
   font-weight: 900;
 }
 
 .tinted {
-  background: linear-gradient(180deg, #eef7ff, #ffffff);
+  background: #f6f8fb;
 }
 
 .intro-grid,
@@ -501,8 +577,8 @@ p {
   justify-content: space-between;
   gap: 1.5rem;
   background:
-    linear-gradient(135deg, rgba(18, 103, 216, 0.94), rgba(7, 31, 63, 0.96)),
-    url("/doc-images/image5.png") center / cover;
+    linear-gradient(135deg, rgba(5, 18, 36, 0.9), rgba(7, 31, 63, 0.82)),
+    url("https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1800&q=82") center / cover;
 }
 
 .cta-section h2,
@@ -548,7 +624,7 @@ textarea {
   color: var(--ink);
   background: #f8fbff;
   border: 1px solid rgba(23, 48, 77, 0.18);
-  border-radius: 8px;
+  border-radius: 0;
   outline: none;
 }
 
@@ -624,7 +700,7 @@ textarea:focus {
   grid-template-columns: 1.4fr 0.8fr 0.8fr;
   gap: 2rem;
   padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 5vw, 5rem);
-  background: #061a34;
+  background: #11151c;
   color: var(--white);
 }
 

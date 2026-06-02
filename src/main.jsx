@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
-import { blogs, destinations, getWhatsAppUrl, services, site, stats, values } from "./data";
+import { blogs, destinations, getWhatsAppUrl, images, services, site, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
 
@@ -134,7 +134,7 @@ function CTASection({ title = "Ready to start your study abroad journey?", text 
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(5, 18, 36, 0.86), rgba(5, 18, 36, 0.5)), url(${images.hero})` }}>
       <div className="hero-copy">
         <p className="eyebrow">Powered by OG Infinitum</p>
         <h1>Study abroad guidance built around your future.</h1>
@@ -150,12 +150,9 @@ function Hero() {
           </a>
         </div>
       </div>
-      <div className="hero-media">
-        <img src="/doc-images/image5.png" alt="Student planning overseas education with global destinations" />
-        <div className="hero-card">
-          <img src="/og-logo.svg" alt="" />
-          <span>Trusted guidance for global dreams</span>
-        </div>
+      <div className="hero-card">
+        <img src="/og-logo.svg" alt="" />
+        <span>Trusted guidance for global dreams</span>
       </div>
     </section>
   );
@@ -205,6 +202,7 @@ function Home() {
     <>
       <Hero />
       <StatsSection />
+      <FeatureTiles />
       <section className="intro-grid page-band">
         <div>
           <p className="eyebrow">About Overseas Gateway</p>
@@ -243,11 +241,46 @@ function Home() {
   );
 }
 
+function FeatureTiles() {
+  const tiles = [
+    {
+      title: "Our Programs",
+      text: "Plan your study abroad journey with counselling, admissions, visas, loans, and departure guidance.",
+      to: "/services",
+      tone: "blue"
+    },
+    {
+      title: "Destinations",
+      text: "Compare countries by academics, costs, career opportunities, lifestyle, and long-term goals.",
+      to: "/destinations",
+      tone: "yellow"
+    },
+    {
+      title: "Eligibility",
+      text: "Share your profile and receive practical next steps from the Overseas Gateway team.",
+      to: "/eligibility",
+      tone: "photo"
+    }
+  ];
+
+  return (
+    <section className="feature-tiles">
+      {tiles.map((tile) => (
+        <article className={`feature-tile ${tile.tone}`} key={tile.title}>
+          <h2>{tile.title}</h2>
+          <p>{tile.text}</p>
+          <Link to={tile.to}>Learn More</Link>
+        </article>
+      ))}
+    </section>
+  );
+}
+
 function About() {
   usePageMeta("About Us", "Learn about Overseas Gateway, its mission, vision, OG Infinitum connection, and student-first values.");
   return (
     <>
-      <PageHero eyebrow="About Us" title="A trusted overseas education partner for confident decisions." text="Overseas Gateway is a dedicated vertical of OG Infinitum, created to help students move beyond confusion and make informed global education choices." image="/doc-images/image1.png" />
+      <PageHero eyebrow="About Us" title="A trusted overseas education partner for confident decisions." text="Overseas Gateway is a dedicated vertical of OG Infinitum, created to help students move beyond confusion and make informed global education choices." image={images.about} />
       <section className="split page-band">
         <article className="panel">
           <p className="eyebrow">Mission</p>
@@ -286,7 +319,7 @@ function Services() {
   usePageMeta("Services", "Explore Overseas Gateway services including profile evaluation, counselling, admissions, visa support, loans, and departure support.");
   return (
     <>
-      <PageHero eyebrow="Services" title="Complete overseas education support under one roof." text="From the first profile review to enrollment, visa filing, accommodation, and post-departure support, we help students move step by step." image="/doc-images/image7.png" />
+      <PageHero eyebrow="Services" title="Complete overseas education support under one roof." text="From the first profile review to enrollment, visa filing, accommodation, and post-departure support, we help students move step by step." image={images.services} />
       <section className="section">
         <div className="grid two">
           {services.map((service) => (
@@ -303,7 +336,7 @@ function Destinations() {
   usePageMeta("Destinations", "Explore study abroad destinations including USA, UK, Canada, Australia, Germany, Ireland, New Zealand, France, and Europe.");
   return (
     <>
-      <PageHero eyebrow="Destinations" title="Choose the country that fits your goals, budget, and future." text="We help students compare destinations based on academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans." image="/doc-images/image5.png" />
+      <PageHero eyebrow="Destinations" title="Choose the country that fits your goals, budget, and future." text="We help students compare destinations based on academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans." image={images.destinations} />
       <section className="section">
         <div className="grid three">
           {destinations.map((destination) => (
@@ -320,7 +353,7 @@ function Blog() {
   usePageMeta("Blog", "Read concise study abroad guides from Overseas Gateway on USA, UK, Australia, Europe, OPT, STEM, and career planning.");
   return (
     <>
-      <PageHero eyebrow="Blog" title="Study abroad insights for smarter decisions." text="Concise guides based on common student questions about destinations, work opportunities, career outcomes, and life abroad." image="/doc-images/image8.png" />
+      <PageHero eyebrow="Blog" title="Study abroad insights for smarter decisions." text="Concise guides based on common student questions about destinations, work opportunities, career outcomes, and life abroad." image={images.blog} />
       <section className="section">
         <div className="grid three">
           {blogs.map((blog) => (
@@ -367,7 +400,7 @@ function EligibilityChecker() {
   usePageMeta("Eligibility Checker", "Check your study abroad eligibility with Overseas Gateway through a modern guided enquiry form.");
   return (
     <>
-      <PageHero eyebrow="Eligibility Checker" title="Check your eligibility for global study options." text="Share your academic background, destination interests, intake plan, and counselling preference. Our team will review your profile and guide your next step." image="/doc-images/image1.png" />
+      <PageHero eyebrow="Eligibility Checker" title="Check your eligibility for global study options." text="Share your academic background, destination interests, intake plan, and counselling preference. Our team will review your profile and guide your next step." image={images.eligibility} />
       <section className="form-page">
         <EligibilityForm />
       </section>
@@ -379,7 +412,7 @@ function Contact() {
   usePageMeta("Contact", "Contact Overseas Gateway for overseas education counselling, eligibility checks, WhatsApp support, and free profile evaluation.");
   return (
     <>
-      <PageHero eyebrow="Contact" title="Talk to an Overseas Gateway counsellor." text="Reach us for profile evaluation, destination guidance, admission planning, visa support, and free study abroad counselling." image="/doc-images/image6.png" />
+      <PageHero eyebrow="Contact" title="Talk to an Overseas Gateway counsellor." text="Reach us for profile evaluation, destination guidance, admission planning, visa support, and free study abroad counselling." image={images.contact} />
       <section className="contact-grid">
         <div className="contact-panel">
           <h2>Contact Details</h2>
