@@ -721,6 +721,18 @@ textarea:focus {
 }
 
 @media (max-width: 1080px) {
+  .hero {
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-card {
+    position: static;
+    max-width: 680px;
+    width: min(100%, 680px);
+    margin-top: 1.2rem;
+  }
+
   .feature-tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -761,13 +773,13 @@ textarea:focus {
   }
 
   .navbar nav a {
-    color: var(--navy);
+    color: var(--navy) !important;
     font-size: 0.96rem;
   }
 
   .navbar nav a:hover,
   .navbar nav a.active {
-    color: var(--navy);
+    color: var(--navy) !important;
     background: rgba(255, 200, 61, 0.28);
   }
 
@@ -789,6 +801,11 @@ textarea:focus {
     min-height: auto;
     padding-top: 4rem;
     padding-bottom: 3rem;
+  }
+
+  .hero-card {
+    width: 100%;
+    max-width: none;
   }
 
   .stats-section,
@@ -886,7 +903,6 @@ textarea:focus {
   }
 
   .hero-card {
-    position: static;
     margin-top: 0.8rem;
     max-width: none;
   }
