@@ -512,6 +512,61 @@ p {
   padding: 1rem;
 }
 
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.program-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1fr);
+  min-height: 260px;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 42px rgba(22, 39, 61, 0.08);
+}
+
+.program-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+}
+
+.program-card div {
+  display: grid;
+  align-content: center;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+}
+
+.program-card span {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 1rem;
+  color: var(--navy);
+  background: var(--gold);
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.program-card p {
+  margin-bottom: 0;
+}
+
+.program-highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1rem, 5vw, 5rem);
+  background: #f6f8fb;
+}
+
 .text-link {
   display: inline-flex;
   margin-top: 0.4rem;
@@ -738,7 +793,8 @@ textarea:focus {
   }
 
   .grid.four,
-  .grid.three {
+  .grid.three,
+  .program-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -793,6 +849,7 @@ textarea:focus {
   .split,
   .contact-grid,
   .article-page,
+  .program-highlight,
   .footer {
     grid-template-columns: 1fr;
   }
@@ -812,8 +869,13 @@ textarea:focus {
   .grid.two,
   .grid.three,
   .grid.four,
+  .program-grid,
   .form-card {
     grid-template-columns: 1fr;
+  }
+
+  .program-card {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
   }
 
   .stats-section {
@@ -866,6 +928,7 @@ textarea:focus {
   .page-band,
   .content-section,
   .why-block,
+  .program-highlight,
   .cta-section,
   .form-page,
   .contact-grid,
@@ -916,8 +979,17 @@ textarea:focus {
 
   .service-card img,
   .destination-card img,
-  .blog-card img {
+  .blog-card img,
+  .program-card img {
     height: 200px;
+  }
+
+  .program-card {
+    grid-template-columns: 1fr;
+  }
+
+  .program-card img {
+    min-height: 200px;
   }
 
   .footer {

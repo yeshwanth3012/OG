@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
-import { blogs, destinations, getWhatsAppUrl, images, services, site, stats, values } from "./data";
+import { blogs, destinations, getWhatsAppUrl, images, programs, services, site, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
 
@@ -31,6 +31,7 @@ function Navbar() {
   const links = [
     ["/", "Home"],
     ["/about", "About"],
+    ["/programs", "Programs"],
     ["/services", "Services"],
     ["/destinations", "Destinations"],
     ["/blog", "Blog"],
@@ -82,6 +83,7 @@ function Footer() {
       <div>
         <h3>Explore</h3>
         <Link to="/services">Services</Link>
+        <Link to="/programs">Programs</Link>
         <Link to="/destinations">Destinations</Link>
         <Link to="/eligibility">Eligibility Checker</Link>
       </div>
@@ -245,8 +247,8 @@ function FeatureTiles() {
   const tiles = [
     {
       title: "Our Programs",
-      text: "Plan your study abroad journey with counselling, admissions, visas, loans, and departure guidance.",
-      to: "/services",
+      text: "Explore UG, PG, Top-Up, and Student Exchange pathways for your global education goals.",
+      to: "/programs",
       tone: "blue"
     },
     {
@@ -328,6 +330,44 @@ function Services() {
         </div>
       </section>
       <CTASection title="Start with a free profile evaluation." />
+    </>
+  );
+}
+
+function Programs() {
+  usePageMeta("Programs", "Explore Overseas Gateway programs including undergraduate, postgraduate, top-up, and student exchange pathways abroad.");
+  return (
+    <>
+      <PageHero eyebrow="Programs" title="Choose the study pathway that fits your next chapter." text="From bachelor's degrees to master's programs, top-up pathways, and exchange opportunities, we help students compare the right academic route before applying abroad." image={images.programs} />
+      <section className="section">
+        <SectionHeading eyebrow="Academic Pathways" title="Programs designed around your goals, qualification, and destination." text="Each pathway is matched with your academic profile, budget, timeline, and long-term career plans so your overseas education decision feels clear and practical." />
+        <div className="program-grid">
+          {programs.map((program, index) => (
+            <article className="program-card" key={program.title}>
+              <img src={program.image} alt={`${program.title} abroad study pathway`} />
+              <div>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{program.title}</h3>
+                <p>{program.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="program-highlight">
+        <div>
+          <p className="eyebrow">How We Guide You</p>
+          <h2>One clear roadmap from program choice to application readiness.</h2>
+        </div>
+        <div className="value-pills roomy">
+          <span>Profile assessment</span>
+          <span>Course matching</span>
+          <span>Country comparison</span>
+          <span>Application planning</span>
+          <span>Visa readiness</span>
+        </div>
+      </section>
+      <CTASection title="Need help choosing between UG, PG, Top-Up, or Exchange?" text="Share your current qualification and study goals. We will help you identify the most practical pathway." />
     </>
   );
 }
@@ -571,6 +611,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/programs" element={<Programs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/blog" element={<Blog />} />

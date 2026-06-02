@@ -23,8 +23,32 @@ export const images = {
   blog: photo("photo-1499750310107-5fef28a66643"),
   eligibility: photo("photo-1522202176988-66273c2fd55f"),
   contact: photo("photo-1556761175-b413da4baf72"),
+  programs: photo("photo-1492538368677-f6e0afe31dcc"),
   cta: photo("photo-1529156069898-49953e39b3ac", "auto=format&fit=crop&w=1800&q=82")
 };
+
+export const programs = [
+  {
+    title: "Undergraduate (UG) Programs",
+    image: photo("photo-1531498860502-7c67cf02f657"),
+    text: "Start your global education journey with internationally recognized bachelor's degrees. We help students choose the right university, course, and destination based on their academic goals and career aspirations."
+  },
+  {
+    title: "Postgraduate (PG) Programs",
+    image: photo("photo-1551836022-d5d88e9218df"),
+    text: "Advance your expertise and career prospects with world-class master's and postgraduate programs. Our team guides you through university selection, applications, and visa processes for a smooth transition abroad."
+  },
+  {
+    title: "Top-Up Programs",
+    image: photo("photo-1554224154-26032ffc0d07"),
+    text: "Convert your diploma or equivalent qualification into a full bachelor's degree in a shorter duration. Top-Up programs provide a fast-track pathway to earning an internationally recognized degree."
+  },
+  {
+    title: "Student Exchange Programs",
+    image: photo("photo-1503676260728-1c00da094a0b"),
+    text: "Experience international education and cultural immersion through short-term study opportunities abroad. Student exchange programs help you gain global exposure, build international networks, and enhance your academic profile."
+  }
+];
 
 export const services = [
   {

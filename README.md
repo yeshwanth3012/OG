@@ -48,6 +48,7 @@ npm run build
 
 - `/`
 - `/about`
+- `/programs`
 - `/services`
 - `/destinations`
 - `/blog`
