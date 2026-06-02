@@ -512,6 +512,65 @@ p {
   padding: 1rem;
 }
 
+.destination-slider {
+  position: relative;
+  overflow: hidden;
+  margin-inline: calc(clamp(1rem, 5vw, 5rem) * -1);
+  padding: 0 clamp(1rem, 5vw, 5rem);
+}
+
+.destination-slider::before,
+.destination-slider::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(2rem, 8vw, 7rem);
+  pointer-events: none;
+  content: "";
+}
+
+.destination-slider::before {
+  left: 0;
+  background: linear-gradient(90deg, #f6f8fb, rgba(246, 248, 251, 0));
+}
+
+.destination-slider::after {
+  right: 0;
+  background: linear-gradient(270deg, #f6f8fb, rgba(246, 248, 251, 0));
+}
+
+.destination-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: destination-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.destination-slider:hover .destination-track {
+  animation-play-state: paused;
+}
+
+.destination-slide {
+  width: clamp(250px, 25vw, 340px);
+  flex: 0 0 auto;
+}
+
+.destination-slide .destination-card {
+  height: 100%;
+}
+
+@keyframes destination-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
 .program-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -597,6 +656,15 @@ p {
 
 .content-section {
   max-width: 980px;
+}
+
+.story-section {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.story-section .section-heading {
+  margin-inline: auto;
 }
 
 .why-block {
@@ -998,5 +1066,11 @@ textarea:focus {
 
   .footer {
     gap: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destination-track {
+    animation: none;
   }
 }

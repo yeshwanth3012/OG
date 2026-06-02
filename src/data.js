@@ -2,8 +2,8 @@ export const site = {
   name: "Overseas Gateway",
   tagline: "Powered by OG Infinitum",
   email: import.meta.env.VITE_CONTACT_EMAIL || "contactus@overseasgateway.com",
-  phones: ["949998351", "949998352"],
-  location: "Hyderabad - 500080"
+  phones: ["9949998351", "9949998352"],
+  location: "1st - 4th Floor, F958+CJ4 Lorven Tiara, Survey No 34, Junction, Kondapur, Laxmi Cyber City, Whitefields, HITEC City, Kothaguda, Hyderabad, Telangana 500084"
 };
 
 export const stats = [
@@ -281,7 +281,7 @@ export const blogs = [
 ];
 
 export function getWhatsAppUrl(message = "Hi Overseas Gateway, I would like a free profile evaluation.") {
-  const number = import.meta.env.VITE_WHATSAPP_NUMBER || "91949998351";
+  const number = import.meta.env.VITE_WHATSAPP_NUMBER || "9949998351";
   const cleaned = number.replace(/\D/g, "");
   return `https://wa.me/${cleaned}?text=${encodeURIComponent(message)}`;
 }

@@ -183,6 +183,22 @@ function DestinationCard({ destination }) {
   );
 }
 
+function DestinationSlider() {
+  const sliderItems = [...destinations, ...destinations];
+
+  return (
+    <div className="destination-slider" aria-label="Study abroad destinations">
+      <div className="destination-track">
+        {sliderItems.map((destination, index) => (
+          <div className="destination-slide" key={`${destination.country}-${index}`} aria-hidden={index >= destinations.length}>
+            <DestinationCard destination={destination} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function BlogCard({ blog }) {
   return (
     <article className="card blog-card">
@@ -223,12 +239,8 @@ function Home() {
         </div>
       </section>
       <section className="section tinted">
-        <SectionHeading eyebrow="Destinations" title="Popular countries for globally ambitious students." />
-        <div className="grid four">
-          {destinations.slice(0, 4).map((destination) => (
-            <DestinationCard key={destination.country} destination={destination} />
-          ))}
-        </div>
+        <SectionHeading eyebrow="Destinations" title="Popular countries for globally ambitious students." text="Explore every destination we guide students through. Hover over the slider to pause and review a country." />
+        <DestinationSlider />
       </section>
       <section className="why-block">
         <SectionHeading eyebrow="Why Choose Us" title="Transparent, ethical, student-first counselling." text="We combine profile assessment, destination comparison, course planning, documentation, visa support, and parent awareness into one connected journey." />
@@ -299,7 +311,7 @@ function About() {
           <p>Through innovation, transparency, and student-centric guidance, we aim to prepare globally competent individuals ready to thrive in an evolving world.</p>
         </article>
       </section>
-      <section className="content-section">
+      <section className="content-section story-section">
         <SectionHeading eyebrow="Our Story" title="A trusted partner for global education decisions." />
         <p>
           Overseas Gateway, a dedicated vertical of OG Infinitum, was founded after recognizing a growing challenge faced by aspiring students: misinformation, improper counselling, lack of transparency, and confusing admission processes that can lead to wasted time, financial loss, and career decisions that do not align with a student's true potential.
