@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
-import { blogs, destinations, getWhatsAppUrl, images, programs, services, site, stats, values } from "./data";
+import { blogs, destinations, getWhatsAppUrl, images, partnerUniversities, programs, services, site, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
 
@@ -26,6 +26,60 @@ function ScrollToTop() {
   return null;
 }
 
+function ScrollReveal() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const selector = [
+      ".page-hero > *",
+      ".section-heading",
+      ".stats-section > *",
+      ".feature-tile",
+      ".intro-grid > *",
+      ".grid > *",
+      ".split > *",
+      ".program-grid > *",
+      ".program-highlight > *",
+      ".why-block > *",
+      ".value-pills > *",
+      ".cta-section > *",
+      ".contact-grid > *",
+      ".contact-map-section > *",
+      ".article-page > *",
+      ".form-card > *",
+      ".university-admissions .section-heading",
+      ".university-admissions-page .section-heading",
+      ".university-info-grid > *",
+      ".footer > *"
+    ].join(",");
+    const elements = [...document.querySelectorAll(selector)];
+
+    elements.forEach((element) => {
+      const siblings = [...element.parentElement.children];
+      const index = siblings.indexOf(element);
+      element.classList.add("scroll-reveal");
+      element.style.setProperty("--reveal-delay", `${Math.min(index * 70, 280)}ms`);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -7% 0px" }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  return null;
+}
+
 function Navbar() {
   const [open, setOpen] = useState(false);
   const links = [
@@ -34,6 +88,7 @@ function Navbar() {
     ["/programs", "Programs"],
     ["/services", "Services"],
     ["/destinations", "Destinations"],
+    ["/universities", "Universities"],
     ["/blog", "Blog"],
     ["/eligibility", "Eligibility"],
     ["/contact", "Contact"]
@@ -64,10 +119,37 @@ function Navbar() {
   );
 }
 
+function SocialIcon({ label }) {
+  const icons = {
+    Instagram: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+      </svg>
+    ),
+    Facebook: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z" />
+      </svg>
+    ),
+    LinkedIn: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6.5 8.5A2 2 0 1 1 6.5 4.5a2 2 0 0 1 0 4zM4.8 20.2h3.4V9.8H4.8v10.4zM13.2 9.6c-1.2 0-2.1.5-2.6 1.2V9.8H7.3c0 .5-.1 10.4-.1 10.4h3.3v-5.8c0-.3 0-.6.1-.8.3-.6.9-1.2 1.9-1.2 1.3 0 1.9.9 1.9 2.3v5.5h3.3v-5.9c0-3.1-1.7-4.5-3.9-4.5z" />
+      </svg>
+    ),
+    YouTube: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18.1 5 12 5 12 5s-6.1 0-7.7.3A2.7 2.7 0 0 0 2.4 7.2 28.2 28.2 0 0 0 2 12a28.2 28.2 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9C5.9 19 12 19 12 19s6.1 0 7.7-.3a2.7 2.7 0 0 0 1.9-1.9A28.2 28.2 0 0 0 22 12a28.2 28.2 0 0 0-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z" />
+      </svg>
+    )
+  };
+
+  return icons[label] || null;
+}
+
 function Footer() {
   return (
     <footer className="footer">
-      <div>
+      <div className="footer-intro">
         <Link className="footer-brand" to="/">
           <img src="/og-logo.svg" alt="Overseas Gateway logo" />
           <span>Overseas Gateway</span>
@@ -75,17 +157,36 @@ function Footer() {
         <p>Powered by OG Infinitum, Built for Global Dreams</p>
       </div>
       <div>
-        <h3>Contact</h3>
+        <h3>Contact Us</h3>
+        <a className="footer-email" href={`mailto:${site.email}`}>{site.email}</a>
+        {site.phones.map((phone) => (
+          <a key={phone} href={`tel:${phone}`}>{phone}</a>
+        ))}
+      </div>
+      <div className="footer-location">
+        <h3>Locate Us</h3>
         <p>{site.location}</p>
-        <p>{site.email}</p>
-        <p>{site.phones.join(", ")}</p>
       </div>
       <div>
         <h3>Explore</h3>
         <Link to="/services">Services</Link>
         <Link to="/programs">Programs</Link>
         <Link to="/destinations">Destinations</Link>
+        <Link to="/universities">Universities</Link>
         <Link to="/eligibility">Eligibility Checker</Link>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <div className="social-links">
+          {site.socials.map((social) => (
+            <a key={social.label} href={social.url} target="_blank" rel="noreferrer" aria-label={`Follow Overseas Gateway on ${social.label}`}>
+              <span className="social-icon" aria-hidden="true">
+                <SocialIcon label={social.label} />
+              </span>
+              <span className="social-label">{social.label}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   );
@@ -199,6 +300,51 @@ function DestinationSlider() {
   );
 }
 
+function UniversityLogoSlider() {
+  const sliderItems = [...partnerUniversities, ...partnerUniversities];
+
+  return (
+    <div className="university-slider" aria-label="Partner universities">
+      <div className="university-track">
+        {sliderItems.map((university, index) => (
+          <div className="university-slide" key={`${university.name}-${index}`} aria-hidden={index >= partnerUniversities.length}>
+            <div className="university-logo-card">
+              <img src={university.logo} alt={university.name} loading="lazy" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function UniversityCard({ university }) {
+  return (
+    <article className="card university-info-card">
+      <div className="university-info-logo">
+        <img src={university.logo} alt="" loading="lazy" />
+      </div>
+      <div>
+        <span className="university-country">{university.country}</span>
+        <h3>{university.name}</h3>
+        <p>{university.text}</p>
+      </div>
+    </article>
+  );
+}
+
+function UniversityAdmissions() {
+  return (
+    <section className="university-admissions section">
+      <SectionHeading title="Our students are admitted into..." center />
+      <UniversityLogoSlider />
+      <div className="university-admissions-cta">
+        <Link className="btn btn-primary" to="/universities">View All Universities</Link>
+      </div>
+    </section>
+  );
+}
+
 function BlogCard({ blog }) {
   return (
     <article className="card blog-card">
@@ -251,6 +397,7 @@ function Home() {
         </div>
       </section>
       <CTASection />
+      <UniversityAdmissions />
     </>
   );
 }
@@ -273,7 +420,7 @@ function FeatureTiles() {
       title: "Eligibility",
       text: "Share your profile and receive practical next steps from the Overseas Gateway team.",
       to: "/eligibility",
-      tone: "photo"
+      tone: "blue"
     }
   ];
 
@@ -294,7 +441,7 @@ function About() {
   usePageMeta("About Us", "Learn about Overseas Gateway, a dedicated vertical of OG Infinitum built for global education guidance and student success.");
   return (
     <>
-      <PageHero eyebrow="About Us" title="Overseas Gateway is powered by OG Infinitum and built for global dreams." text="We empower students to pursue global education and international careers with confidence, clarity, and the right guidance at every step." image={images.about} />
+      <PageHero eyebrow="About Us" title="Overseas Gateway is powered by OG Infinitum and built for global dreams." text="We empower students to pursue global education and international careers with confidence, clarity, and the right guidance at every step." />
       <section className="split page-band">
         <article className="panel">
           <p className="eyebrow">Our Mission</p>
@@ -349,7 +496,7 @@ function Services() {
   usePageMeta("Services", "Explore Overseas Gateway services including profile evaluation, counselling, admissions, visa support, loans, and departure support.");
   return (
     <>
-      <PageHero eyebrow="Services" title="Complete overseas education support under one roof." text="From the first profile review to enrollment, visa filing, accommodation, and post-departure support, we help students move step by step." image={images.services} />
+      <PageHero eyebrow="Services" title="Complete overseas education support under one roof." text="From the first profile review to enrollment, visa filing, accommodation, and post-departure support, we help students move step by step." />
       <section className="section">
         <div className="grid two">
           {services.map((service) => (
@@ -366,7 +513,7 @@ function Programs() {
   usePageMeta("Programs", "Explore Overseas Gateway programs including undergraduate, postgraduate, top-up, and student exchange pathways abroad.");
   return (
     <>
-      <PageHero eyebrow="Programs" title="Choose the study pathway that fits your next chapter." text="From bachelor's degrees to master's programs, top-up pathways, and exchange opportunities, we help students compare the right academic route before applying abroad." image={images.programs} />
+      <PageHero eyebrow="Programs" title="Choose the study pathway that fits your next chapter." text="From bachelor's degrees to master's programs, top-up pathways, and exchange opportunities, we help students compare the right academic route before applying abroad." />
       <section className="section">
         <SectionHeading eyebrow="Academic Pathways" title="Programs designed around your goals, qualification, and destination." text="Each pathway is matched with your academic profile, budget, timeline, and long-term career plans so your overseas education decision feels clear and practical." />
         <div className="program-grid">
@@ -404,8 +551,9 @@ function Destinations() {
   usePageMeta("Destinations", "Explore study abroad destinations including USA, UK, Canada, Australia, Germany, Ireland, New Zealand, France, and Europe.");
   return (
     <>
-      <PageHero eyebrow="Destinations" title="Choose the country that fits your goals, budget, and future." text="We help students compare destinations based on academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans." image={images.destinations} />
+      <PageHero eyebrow="Destinations" title="Choose the country that fits your goals, budget, and future." text="We help students compare destinations based on academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans." />
       <section className="section">
+        <SectionHeading eyebrow="Study Destinations" title="Explore every country we guide students through." text="Compare academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans across our key destinations." />
         <div className="grid three">
           {destinations.map((destination) => (
             <DestinationCard key={destination.country} destination={destination} />
@@ -417,11 +565,29 @@ function Destinations() {
   );
 }
 
+function Universities() {
+  usePageMeta("Universities", "Explore partner and pathway universities where Overseas Gateway students have secured admissions across the USA, UK, France, Germany, and more.");
+  return (
+    <>
+      <PageHero eyebrow="Universities" title="Our students are admitted into leading global institutions." text="Explore the universities and business schools where Overseas Gateway students have secured admissions, with a short overview of what each institution is known for." />
+      <section className="section">
+        <SectionHeading eyebrow="University Network" title="Partner and pathway universities across key destinations." text="From business schools in France and Germany to research universities in the USA, discover the institutions behind successful student journeys." />
+        <div className="grid three university-info-grid">
+          {partnerUniversities.map((university) => (
+            <UniversityCard key={university.name} university={university} />
+          ))}
+        </div>
+      </section>
+      <CTASection title="Want help shortlisting the right university?" text="Share your profile and we will recommend universities that match your goals, budget, and destination preferences." />
+    </>
+  );
+}
+
 function Blog() {
   usePageMeta("Blog", "Read concise study abroad guides from Overseas Gateway on USA, UK, Australia, Europe, OPT, STEM, and career planning.");
   return (
     <>
-      <PageHero eyebrow="Blog" title="Study abroad insights for smarter decisions." text="Concise guides based on common student questions about destinations, work opportunities, career outcomes, and life abroad." image={images.blog} />
+      <PageHero eyebrow="Blog" title="Study abroad insights for smarter decisions." text="Concise guides based on common student questions about destinations, work opportunities, career outcomes, and life abroad." />
       <section className="section">
         <div className="grid three">
           {blogs.map((blog) => (
@@ -468,7 +634,7 @@ function EligibilityChecker() {
   usePageMeta("Eligibility Checker", "Check your study abroad eligibility with Overseas Gateway through a modern guided enquiry form.");
   return (
     <>
-      <PageHero eyebrow="Eligibility Checker" title="Check your eligibility for global study options." text="Share your academic background, destination interests, intake plan, and counselling preference. Our team will review your profile and guide your next step." image={images.eligibility} />
+      <PageHero eyebrow="Eligibility Checker" title="Check your eligibility for global study options." text="Share your academic background, destination interests, intake plan, and counselling preference. Our team will review your profile and guide your next step." />
       <section className="form-page">
         <EligibilityForm />
       </section>
@@ -480,7 +646,7 @@ function Contact() {
   usePageMeta("Contact", "Contact Overseas Gateway for overseas education counselling, eligibility checks, WhatsApp support, and free profile evaluation.");
   return (
     <>
-      <PageHero eyebrow="Contact" title="Talk to an Overseas Gateway counsellor." text="Reach us for profile evaluation, destination guidance, admission planning, visa support, and free study abroad counselling." image={images.contact} />
+      <PageHero eyebrow="Contact" title="Talk to an Overseas Gateway counsellor." text="Reach us for profile evaluation, destination guidance, admission planning, visa support, and free study abroad counselling." />
       <section className="contact-grid">
         <div className="contact-panel">
           <h2>Contact Details</h2>
@@ -493,11 +659,26 @@ function Contact() {
         </div>
         <ContactForm />
       </section>
+      <section className="contact-map-section">
+        <SectionHeading eyebrow="Office Location" title="Find our Hyderabad office on the map." text="Visit Overseas Gateway at Lorven Tiara, Kondapur, for in-person counselling and support." />
+        <div className="contact-map">
+          <iframe
+            title="Overseas Gateway office location map"
+            src={site.mapEmbedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+        <a className="text-link contact-map-link" href={site.mapLink} target="_blank" rel="noreferrer">
+          Open in Google Maps
+        </a>
+      </section>
     </>
   );
 }
 
-function PageHero({ eyebrow, title, text, image }) {
+function PageHero({ eyebrow, title, text }) {
   return (
     <section className="page-hero">
       <div>
@@ -505,7 +686,6 @@ function PageHero({ eyebrow, title, text, image }) {
         <h1>{title}</h1>
         <p>{text}</p>
       </div>
-      <img src={image} alt={`${eyebrow} illustration`} />
     </section>
   );
 }
@@ -630,10 +810,11 @@ function SelectField({ label, name, options }) {
   );
 }
 
-function App() {
+function AppShell() {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
+      <ScrollReveal />
       <Navbar />
       <main>
         <Routes>
@@ -642,6 +823,7 @@ function App() {
           <Route path="/programs" element={<Programs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/universities" element={<Universities />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/eligibility" element={<EligibilityChecker />} />
@@ -650,6 +832,14 @@ function App() {
         </Routes>
       </main>
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
     </BrowserRouter>
   );
 }

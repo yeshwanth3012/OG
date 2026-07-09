@@ -3,7 +3,17 @@ export const site = {
   tagline: "Powered by OG Infinitum",
   email: import.meta.env.VITE_CONTACT_EMAIL || "contactus@overseasgateway.com",
   phones: ["9949998351", "9949998352"],
-  location: "1st - 4th Floor, F958+CJ4 Lorven Tiara, Survey No 34, Junction, Kondapur, Laxmi Cyber City, Whitefields, HITEC City, Kothaguda, Hyderabad, Telangana 500084"
+  location: "1st - 4th Floor, F958+CJ4 Lorven Tiara, Survey No 34, Junction, Kondapur, Laxmi Cyber City, Whitefields, HITEC City, Kothaguda, Hyderabad, Telangana 500084",
+  mapLink: import.meta.env.VITE_GOOGLE_MAP_URL || "https://share.google/6r8QTNh9P8Q3FmAoY",
+  mapEmbedUrl:
+    import.meta.env.VITE_GOOGLE_MAP_EMBED ||
+    "https://maps.google.com/maps?q=Lorven+Tiara,+Kondapur,+Hyderabad,+Telangana+500084&z=16&output=embed",
+  socials: [
+    { label: "Instagram", url: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/" },
+    { label: "Facebook", url: import.meta.env.VITE_FACEBOOK_URL || "https://www.facebook.com/" },
+    { label: "LinkedIn", url: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/" },
+    { label: "YouTube", url: import.meta.env.VITE_YOUTUBE_URL || "https://www.youtube.com/" }
+  ]
 };
 
 export const stats = [
@@ -17,13 +27,14 @@ const photo = (id, params = "auto=format&fit=crop&w=1200&q=82") =>
 
 export const images = {
   hero: photo("photo-1509062522246-3755977927d7", "auto=format&fit=crop&w=1800&q=85"),
-  about: photo("photo-1519389950473-47ba0277781c"),
+  about: photo("photo-1552664730-d307ca884978", "auto=format&fit=crop&w=1800&q=85"),
   services: photo("photo-1516321318423-f06f85e504b3"),
-  destinations: photo("photo-1488646953014-85cb44e25828"),
+  destinations: photo("photo-1488646953014-85cb44e25828", "auto=format&fit=crop&w=1800&q=85"),
   blog: photo("photo-1499750310107-5fef28a66643"),
   eligibility: photo("photo-1522202176988-66273c2fd55f"),
   contact: photo("photo-1556761175-b413da4baf72"),
   programs: photo("photo-1492538368677-f6e0afe31dcc"),
+  universities: photo("photo-1492538368677-f6e0afe31dcc", "auto=format&fit=crop&w=1800&q=82"),
   cta: photo("photo-1529156069898-49953e39b3ac", "auto=format&fit=crop&w=1800&q=82")
 };
 
@@ -141,6 +152,208 @@ export const destinations = [
   }
 ];
 
+const logo = (file) => `/Logos/${encodeURIComponent(file)}`;
+const blogImage = (file) => `/blog/${encodeURIComponent(file)}`;
+
+export const partnerUniversities = [
+  {
+    name: "American Business School Paris",
+    shortName: "ABS",
+    logo: logo("abs.png"),
+    country: "France",
+    text: "A Paris-based international business school offering American-style undergraduate and graduate programs with a strong focus on global management and multicultural learning."
+  },
+  {
+    name: "Arden University",
+    shortName: "Arden",
+    logo: logo("Arden.png"),
+    country: "UK / Germany",
+    text: "A UK university known for flexible, career-focused degrees through online, blended, and campus study options across the UK and Berlin."
+  },
+  {
+    name: "Aviancity",
+    shortName: "Aviancity",
+    logo: logo("Aviancity.png"),
+    country: "Europe",
+    text: "An international education partner supporting students with pathway and study-abroad options across selected European destinations."
+  },
+  {
+    name: "BHMS Business & Hotel Management School",
+    shortName: "BHMS",
+    logo: logo("bhms.png"),
+    country: "Switzerland",
+    text: "A Swiss hospitality school specializing in hotel management, culinary arts, and business programs with strong industry exposure in Lucerne."
+  },
+  {
+    name: "Berlin School of Business and Innovation",
+    shortName: "BSBI",
+    logo: logo("BSBI.png"),
+    country: "Germany",
+    text: "A Berlin-based business school offering English-taught bachelor's, master's, and doctoral pathways in business, IT, marketing, and hospitality."
+  },
+  {
+    name: "Clark University",
+    shortName: "Clark",
+    logo: logo("Clark.png"),
+    country: "USA",
+    text: "A private research university in Massachusetts known for its liberal arts foundation, graduate strength, and close-knit academic community."
+  },
+  {
+    name: "CODE University of Applied Sciences",
+    shortName: "CODE",
+    logo: logo("code uni.png"),
+    country: "Germany",
+    text: "A Berlin university of applied sciences focused on digital product development, software engineering, and interaction design."
+  },
+  {
+    name: "Drexel University",
+    shortName: "Drexel",
+    logo: logo("Drexel.png"),
+    country: "USA",
+    text: "A Philadelphia research university renowned for cooperative education, immersive internships, and career-ready STEM and professional programs."
+  },
+  {
+    name: "EMLV Business School",
+    shortName: "EMLV",
+    logo: logo("emlv.png"),
+    country: "France",
+    text: "A Paris business school offering management programs with international exposure, digital business focus, and strong industry connections."
+  },
+  {
+    name: "Excelia Business School",
+    shortName: "Excelia",
+    logo: logo("Excelia.png"),
+    country: "France",
+    text: "A triple-accredited French business school known for tourism, hospitality, and international management programs across multiple campuses."
+  },
+  {
+    name: "GISMA University of Applied Sciences",
+    shortName: "GISMA",
+    logo: logo("GISMA.png"),
+    country: "Germany",
+    text: "A German university of applied sciences offering practice-oriented business, data, and technology programs for international students."
+  },
+  {
+    name: "Illinois Institute of Technology",
+    shortName: "Illinois Tech",
+    logo: logo("IIT chicago.png"),
+    country: "USA",
+    text: "A Chicago technological university recognized for engineering, computing, architecture, and applied science education in an urban research setting."
+  },
+  {
+    name: "International School of Management",
+    shortName: "ISM",
+    logo: logo("ism.png"),
+    country: "Germany",
+    text: "A private German business school with campuses across major cities, known for international management and applied business education."
+  },
+  {
+    name: "KEDGE Business School",
+    shortName: "KEDGE",
+    logo: logo("Kedge.png"),
+    country: "France",
+    text: "A triple-accredited French grande école with campuses in Bordeaux, Marseille, and Paris, known for management, finance, and supply chain programs."
+  },
+  {
+    name: "Munich Business School",
+    shortName: "MBS",
+    logo: logo("munich bs.png"),
+    country: "Germany",
+    text: "A private business school in Munich offering internationally oriented bachelor's and master's programs with strong corporate links in Bavaria."
+  },
+  {
+    name: "NEOMA Business School",
+    shortName: "NEOMA",
+    logo: logo("neoma.png"),
+    country: "France",
+    text: "A triple-accredited French business school with campuses in Reims, Rouen, and Paris, known for innovation-driven management education."
+  },
+  {
+    name: "Northeastern University",
+    shortName: "Northeastern",
+    logo: logo("neu.png"),
+    country: "USA",
+    text: "A global research university famous for experiential learning, co-op placements, and strong graduate pathways in technology and business."
+  },
+  {
+    name: "Paris School of Business",
+    shortName: "PSB",
+    logo: logo("psb.png"),
+    country: "France",
+    text: "A Paris business school offering internationally oriented management degrees with a strong focus on entrepreneurship and professional practice."
+  },
+  {
+    name: "Rennes School of Business",
+    shortName: "Rennes SB",
+    logo: logo("rennes.png"),
+    country: "France",
+    text: "A highly international French business school known for English-taught programs, global faculty, and strong management education."
+  },
+  {
+    name: "Rochester Institute of Technology",
+    shortName: "RIT",
+    logo: logo("RIT.png"),
+    country: "USA",
+    text: "A leading US university at the intersection of technology, design, and the arts, known for career-focused STEM and creative programs."
+  },
+  {
+    name: "SKEMA Business School",
+    shortName: "SKEMA",
+    logo: logo("skema.png"),
+    country: "France",
+    text: "A global French business school with multi-campus presence, known for international business, finance, and digital economy programs."
+  },
+  {
+    name: "SRH University",
+    shortName: "SRH",
+    logo: logo("SRH.png"),
+    country: "Germany",
+    text: "A network of German universities of applied sciences offering practice-based programs in business, technology, health, and design."
+  },
+  {
+    name: "State University of New York",
+    shortName: "SUNY",
+    logo: logo("SUNY.png"),
+    country: "USA",
+    text: "One of the largest public university systems in the USA, offering diverse campuses and strong academic pathways across many disciplines."
+  },
+  {
+    name: "University of Europe for Applied Sciences",
+    shortName: "UE",
+    logo: logo("UE.png"),
+    country: "Germany",
+    text: "A German university of applied sciences focused on business, sports, media, art, and design with campuses in major creative cities."
+  },
+  {
+    name: "University of Houston",
+    shortName: "UH",
+    logo: logo("UH.png"),
+    country: "USA",
+    text: "A major public research university in Texas known for energy, engineering, business, and a diverse international student community."
+  },
+  {
+    name: "University of Massachusetts",
+    shortName: "UMass",
+    logo: logo("UMASS.png"),
+    country: "USA",
+    text: "A respected public university system in Massachusetts offering strong academics across research, STEM, business, and professional fields."
+  },
+  {
+    name: "Washington State University",
+    shortName: "WSU",
+    logo: logo("wsu.png"),
+    country: "USA",
+    text: "A public land-grant research university known for science, engineering, agriculture, and a strong campus community across Washington."
+  },
+  {
+    name: "Yeshiva University",
+    shortName: "Yeshiva",
+    logo: logo("yeshiva.png"),
+    country: "USA",
+    text: "A New York research university combining rigorous academics with professional programs in business, law, science, and the humanities."
+  }
+];
+
 export const values = [
   "Student-centric approach",
   "Integrity and transparency",
@@ -158,7 +371,7 @@ export const blogs = [
   {
     slug: "life-of-an-indian-student-in-the-usa",
     title: "Life of an Indian Student in the USA",
-    image: photo("photo-1517486808906-6ca8b3f04846"),
+    image: blogImage("indian-student-usa.png"),
     excerpt:
       "Studying in the USA is a journey of independence, emotion, hard work, friendships, and personal growth.",
     body: [
@@ -171,7 +384,7 @@ export const blogs = [
   {
     slug: "opt-and-stem-opt-explained",
     title: "OPT & STEM OPT Explained",
-    image: photo("photo-1551434678-e076c223a692"),
+    image: blogImage("opt-stem-opt-explained.png"),
     excerpt:
       "Understand how OPT and STEM OPT help international students gain real work experience in the USA.",
     body: [
@@ -184,7 +397,7 @@ export const blogs = [
   {
     slug: "top-stem-courses-in-the-usa",
     title: "Top STEM Courses in the USA",
-    image: photo("photo-1531482615713-2afd69097998"),
+    image: blogImage("top-stem-courses-usa.png"),
     excerpt:
       "STEM programs remain a strong choice for students seeking high-demand careers and extended work opportunities.",
     body: [
@@ -197,7 +410,7 @@ export const blogs = [
   {
     slug: "why-the-uk-is-still-a-top-destination",
     title: "Why the UK is Still a Top Destination",
-    image: photo("photo-1528909514045-2fa4ac7a08ba"),
+    image: blogImage("why-uk-top-destination.png"),
     excerpt:
       "The UK continues to attract students through academic reputation, shorter degrees, and global recognition.",
     body: [
@@ -209,7 +422,7 @@ export const blogs = [
   {
     slug: "top-in-demand-jobs-in-the-uk",
     title: "Top In-Demand Jobs in the UK",
-    image: photo("photo-1556761175-5973dc0f32e7"),
+    image: photo("photo-1513635269975-59663e0ac1ad", "auto=format&fit=crop&w=1200&q=82"),
     excerpt:
       "Career planning matters. Students should connect course choices with in-demand roles and employer needs.",
     body: [
@@ -221,7 +434,7 @@ export const blogs = [
   {
     slug: "rankings-vs-career-opportunities",
     title: "Rankings vs Career Opportunities",
-    image: photo("photo-1497366754035-f200968a6e72"),
+    image: blogImage("rankings-career-opportunities.jpg"),
     excerpt:
       "A high ranking is useful, but career outcomes, location, fees, internships, and course fit matter too.",
     body: [
@@ -233,7 +446,7 @@ export const blogs = [
   {
     slug: "post-study-work-and-pr-in-australia",
     title: "Post-Study Work & PR Opportunities in Australia",
-    image: photo("photo-1523482580672-f109ba8cb9be"),
+    image: blogImage("australia-post-study-work.jpg"),
     excerpt:
       "Australia is attractive for practical education, post-study options, and pathways that support career growth.",
     body: [
@@ -245,7 +458,7 @@ export const blogs = [
   {
     slug: "before-studying-in-australia",
     title: "Everything You Need to Know Before Studying in Australia",
-    image: photo("photo-1517048676732-d65bc937f952"),
+    image: blogImage("before-studying-australia.png"),
     excerpt:
       "Know the essentials before applying: courses, fees, living costs, visa steps, work rules, and accommodation.",
     body: [
@@ -257,7 +470,7 @@ export const blogs = [
   {
     slug: "biggest-myth-about-studying-in-europe",
     title: "Biggest Myth About Studying in Europe",
-    image: photo("photo-1499856871958-5b9627545d1a", "auto=format&fit=crop&w=1200&q=82&crop=entropy"),
+    image: blogImage("europe-study-myth.png"),
     excerpt:
       "Europe is not one fixed experience. Costs, languages, programs, careers, and rules differ by country.",
     body: [
@@ -269,7 +482,7 @@ export const blogs = [
   {
     slug: "benefits-of-studying-in-europe",
     title: "Benefits of Studying in Europe",
-    image: photo("photo-1473959383413-0537f4960bbd", "auto=format&fit=crop&w=1200&q=82&crop=entropy"),
+    image: photo("photo-1467269204594-9661b134dd2b", "auto=format&fit=crop&w=1200&q=82"),
     excerpt:
       "Europe offers academic diversity, cultural exposure, affordability, mobility, and specialized career pathways.",
     body: [

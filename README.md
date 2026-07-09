@@ -19,6 +19,10 @@ VITE_EMAILJS_ELIGIBILITY_TEMPLATE_ID=your_eligibility_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
 VITE_CONTACT_EMAIL=contactus@overseasgateway.com
 VITE_WHATSAPP_NUMBER=9949998351
+VITE_INSTAGRAM_URL=https://www.instagram.com/your-profile
+VITE_FACEBOOK_URL=https://www.facebook.com/your-profile
+VITE_LINKEDIN_URL=https://www.linkedin.com/company/your-profile
+VITE_YOUTUBE_URL=https://www.youtube.com/@your-profile
 ```
 
 Configure both EmailJS templates to send submissions to `contactus@overseasgateway.com`.
