@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { blogs, destinations, getWhatsAppUrl, images, partnerUniversities, programs, services, site, stats, values } from "./data";
@@ -48,8 +48,6 @@ function ScrollReveal() {
       ".article-page > *",
       ".form-card > *",
       ".university-admissions .section-heading",
-      ".university-admissions-page .section-heading",
-      ".university-info-grid > *",
       ".footer > *"
     ].join(",");
     const elements = [...document.querySelectorAll(selector)];
@@ -88,7 +86,6 @@ function Navbar() {
     ["/programs", "Programs"],
     ["/services", "Services"],
     ["/destinations", "Destinations"],
-    ["/universities", "Universities"],
     ["/blog", "Blog"],
     ["/eligibility", "Eligibility"],
     ["/contact", "Contact"]
@@ -172,7 +169,6 @@ function Footer() {
         <Link to="/services">Services</Link>
         <Link to="/programs">Programs</Link>
         <Link to="/destinations">Destinations</Link>
-        <Link to="/universities">Universities</Link>
         <Link to="/eligibility">Eligibility Checker</Link>
       </div>
       <div>
@@ -318,29 +314,11 @@ function UniversityLogoSlider() {
   );
 }
 
-function UniversityCard({ university }) {
-  return (
-    <article className="card university-info-card">
-      <div className="university-info-logo">
-        <img src={university.logo} alt="" loading="lazy" />
-      </div>
-      <div>
-        <span className="university-country">{university.country}</span>
-        <h3>{university.name}</h3>
-        <p>{university.text}</p>
-      </div>
-    </article>
-  );
-}
-
 function UniversityAdmissions() {
   return (
     <section className="university-admissions section">
       <SectionHeading title="Our students are admitted into..." center />
       <UniversityLogoSlider />
-      <div className="university-admissions-cta">
-        <Link className="btn btn-primary" to="/universities">View All Universities</Link>
-      </div>
     </section>
   );
 }
@@ -565,24 +543,6 @@ function Destinations() {
   );
 }
 
-function Universities() {
-  usePageMeta("Universities", "Explore partner and pathway universities where Overseas Gateway students have secured admissions across the USA, UK, France, Germany, and more.");
-  return (
-    <>
-      <PageHero eyebrow="Universities" title="Our students are admitted into leading global institutions." text="Explore the universities and business schools where Overseas Gateway students have secured admissions, with a short overview of what each institution is known for." />
-      <section className="section">
-        <SectionHeading eyebrow="University Network" title="Partner and pathway universities across key destinations." text="From business schools in France and Germany to research universities in the USA, discover the institutions behind successful student journeys." />
-        <div className="grid three university-info-grid">
-          {partnerUniversities.map((university) => (
-            <UniversityCard key={university.name} university={university} />
-          ))}
-        </div>
-      </section>
-      <CTASection title="Want help shortlisting the right university?" text="Share your profile and we will recommend universities that match your goals, budget, and destination preferences." />
-    </>
-  );
-}
-
 function Blog() {
   usePageMeta("Blog", "Read concise study abroad guides from Overseas Gateway on USA, UK, Australia, Europe, OPT, STEM, and career planning.");
   return (
@@ -741,7 +701,23 @@ function ContactForm() {
 }
 
 function EligibilityForm() {
+  const formRef = useRef(null);
   const [state, setState] = useState({ status: "idle", message: "" });
+  const [isSubmitReady, setIsSubmitReady] = useState(false);
+
+  function updateSubmitReady() {
+    const form = formRef.current;
+    if (!form) return;
+
+    const data = new FormData(form);
+    const ready =
+      String(data.get("study_level") || "").trim() !== "" &&
+      String(data.get("name") || "").trim() !== "" &&
+      String(data.get("phone") || "").trim().length >= 7 &&
+      String(data.get("counselling_mode") || "").trim() !== "";
+
+    setIsSubmitReady(ready);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -756,6 +732,7 @@ function EligibilityForm() {
     try {
       await sendEmailForm(form);
       form.reset();
+      setIsSubmitReady(false);
       setState({ status: "success", message: "Eligibility request submitted. Our team will review your profile and contact you." });
     } catch {
       setState({ status: "error", message: `Form submission is not available right now. Please email ${site.email} or use WhatsApp.` });
@@ -763,25 +740,35 @@ function EligibilityForm() {
   }
 
   return (
-    <form className="form-card large" onSubmit={handleSubmit}>
+    <form
+      ref={formRef}
+      className="form-card large"
+      onSubmit={handleSubmit}
+      onInput={updateSubmitReady}
+      onChange={updateSubmitReady}
+    >
       <input type="hidden" name="form_type" value="Eligibility Checker" />
       <input type="hidden" name="to_email" value={site.email} />
-      <SelectField label="Study level" name="study_level" options={["Undergraduate", "Postgraduate", "Diploma", "PhD", "Not sure yet"]} />
-      <SelectField label="Interested countries" name="interested_countries" options={["USA", "UK", "Canada", "Australia", "Germany", "Ireland", "New Zealand", "France", "Europe", "Multiple countries"]} />
+      <SelectField label="Study level" name="study_level" options={["Undergraduate", "Postgraduate", "Diploma", "PhD", "Not sure yet"]} required />
+      <SelectField label="Interested countries" name="interested_countries" options={["USA", "UK", "Canada", "Australia", "Germany", "Ireland", "New Zealand", "France", "Europe", "Multiple countries"]} required />
       <FormField label="Interested course" name="interested_course" required />
-      <SelectField label="Intake year" name="intake_year" options={["2026", "2027", "2028", "Not decided"]} />
-      <SelectField label="Main priority" name="main_priority" options={["High salary potential", "Affordable tuition", "PR or settlement", "Top-ranked university", "Scholarship", "Fast admission"]} />
+      <SelectField label="Intake year" name="intake_year" options={["2026", "2027", "2028", "Not decided"]} required />
+      <SelectField label="Main priority" name="main_priority" options={["High salary potential", "Affordable tuition", "PR or settlement", "Top-ranked university", "Scholarship", "Fast admission"]} required />
       <FormField label="Current qualification" name="current_qualification" required />
       <FormField label="Academic percentage/GPA" name="academic_score" required />
-      <SelectField label="English test status" name="english_test_status" options={["Not taken yet", "Planning IELTS", "Planning PTE", "Planning TOEFL", "Already have score", "Need guidance"]} />
-      <SelectField label="Work experience" name="work_experience" options={["No experience", "Less than 1 year", "1-2 years", "3-5 years", "5+ years"]} />
-      <SelectField label="Scholarship importance" name="scholarship_importance" options={["Very important", "Good to have", "Not required", "Need guidance"]} />
+      <SelectField label="English test status" name="english_test_status" options={["Not taken yet", "Planning IELTS", "Planning PTE", "Planning TOEFL", "Already have score", "Need guidance"]} required />
+      <SelectField label="Work experience" name="work_experience" options={["No experience", "Less than 1 year", "1-2 years", "3-5 years", "5+ years"]} required />
+      <SelectField label="Scholarship importance" name="scholarship_importance" options={["Very important", "Good to have", "Not required", "Need guidance"]} required />
       <FormField label="Full name" name="name" required />
       <FormField label="Mobile number" name="phone" type="tel" minLength="7" required />
       <FormField label="Email" name="email" type="email" required />
       <FormField label="City/State" name="city_state" required />
-      <SelectField label="Preferred counselling mode" name="counselling_mode" options={["Phone call", "WhatsApp", "Video call", "In-person"]} />
-      <button className="btn btn-primary wide" type="submit" disabled={state.status === "loading"}>
+      <SelectField label="Preferred counselling mode" name="counselling_mode" options={["Phone call", "WhatsApp", "Video call", "In-person"]} required />
+      <button
+        className={`btn btn-primary wide${state.status === "loading" ? " is-loading" : ""}`}
+        type="submit"
+        disabled={state.status === "loading" || !isSubmitReady}
+      >
         {state.status === "loading" ? "Submitting..." : "Submit Eligibility Check"}
       </button>
       {state.message ? <p className={`form-status ${state.status}`}>{state.message}</p> : null}
@@ -798,11 +785,11 @@ function FormField({ label, name, type = "text", ...props }) {
   );
 }
 
-function SelectField({ label, name, options }) {
+function SelectField({ label, name, options, required = false }) {
   return (
     <label>
       {label}
-      <select name={name} defaultValue="" required>
+      <select name={name} defaultValue="" required={required}>
         <option value="" disabled>Select option</option>
         {options.map((option) => <option key={option}>{option}</option>)}
       </select>
@@ -823,7 +810,6 @@ function AppShell() {
           <Route path="/programs" element={<Programs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/destinations" element={<Destinations />} />
-          <Route path="/universities" element={<Universities />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/eligibility" element={<EligibilityChecker />} />

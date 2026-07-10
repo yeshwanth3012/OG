@@ -422,7 +422,7 @@ export const blogs = [
   {
     slug: "top-in-demand-jobs-in-the-uk",
     title: "Top In-Demand Jobs in the UK",
-    image: photo("photo-1513635269975-59663e0ac1ad", "auto=format&fit=crop&w=1200&q=82"),
+    image: blogImage("top-in-demand-jobs-uk.png"),
     excerpt:
       "Career planning matters. Students should connect course choices with in-demand roles and employer needs.",
     body: [
