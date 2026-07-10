@@ -434,7 +434,7 @@ export const blogs = [
   {
     slug: "rankings-vs-career-opportunities",
     title: "Rankings vs Career Opportunities",
-    image: blogImage("rankings-career-opportunities.jpg"),
+    image: blogImage("rankings-career-opportunities.png"),
     excerpt:
       "A high ranking is useful, but career outcomes, location, fees, internships, and course fit matter too.",
     body: [
@@ -446,7 +446,7 @@ export const blogs = [
   {
     slug: "post-study-work-and-pr-in-australia",
     title: "Post-Study Work & PR Opportunities in Australia",
-    image: blogImage("australia-post-study-work.jpg"),
+    image: blogImage("australia-post-study-work.png"),
     excerpt:
       "Australia is attractive for practical education, post-study options, and pathways that support career growth.",
     body: [
