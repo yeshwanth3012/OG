@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import { blogs, destinations, getWhatsAppUrl, images, partnerUniversities, programs, services, site, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
@@ -94,10 +94,10 @@ function Navbar() {
   return (
     <header className="navbar">
       <Link className="brand" to="/" onClick={() => setOpen(false)}>
-        <img src="/og-logo.svg" alt="Overseas Gateway logo" />
+        <img src="/main-logo.jpeg" alt="Overseas Gateway logo" />
         <span>
-          Overseas Gateway
-          <small>Powered by OG Infinitum</small>
+          <small>OG Infinitum's</small>
+          <strong>OVERSEAS GATEWAY</strong>
         </span>
       </Link>
       <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
@@ -148,7 +148,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-intro">
         <Link className="footer-brand" to="/">
-          <img src="/og-logo.svg" alt="Overseas Gateway logo" />
+          <img src="/main-logo.jpeg" alt="Overseas Gateway logo" />
           <span>Overseas Gateway</span>
         </Link>
         <p>Powered by OG Infinitum, Built for Global Dreams</p>
@@ -250,7 +250,7 @@ function Hero() {
         </div>
       </div>
       <div className="hero-card">
-        <img src="/og-logo.svg" alt="" />
+        <img src="/main-logo.jpeg" alt="" />
         <span>Trusted guidance for global dreams</span>
       </div>
     </section>
@@ -638,6 +638,30 @@ function Contact() {
   );
 }
 
+function HomepageEntry() {
+  const navigate = useNavigate();
+  const [isUnlocked, setIsUnlocked] = useState(() => sessionStorage.getItem("og-homepage-unlocked") === "true");
+
+  if (isUnlocked) {
+    return <Home />;
+  }
+
+  function handleEnquirySuccess() {
+    sessionStorage.setItem("og-homepage-unlocked", "true");
+    setIsUnlocked(true);
+    navigate("/", { replace: true });
+  }
+
+  return (
+    <>
+      <PageHero eyebrow="Start Your Journey" title="Tell us what you need help with." text="Complete this quick enquiry and unlock the Overseas Gateway homepage. Our counsellors will use your answers to guide your next step." />
+      <section className="form-page">
+        <ContactForm onSuccess={handleEnquirySuccess} />
+      </section>
+    </>
+  );
+}
+
 function PageHero({ eyebrow, title, text }) {
   return (
     <section className="page-hero">
@@ -650,7 +674,7 @@ function PageHero({ eyebrow, title, text }) {
   );
 }
 
-function ContactForm() {
+function ContactForm({ onSuccess }) {
   const [state, setState] = useState({ status: "idle", message: "" });
 
   async function handleSubmit(event) {
@@ -667,6 +691,7 @@ function ContactForm() {
       await sendEmailForm(form);
       form.reset();
       setState({ status: "success", message: "Thanks. Your enquiry has been sent. Our counsellor will contact you soon." });
+      onSuccess?.();
     } catch {
       setState({ status: "error", message: `Form submission is not available right now. Please email ${site.email} or use WhatsApp.` });
     }
@@ -805,7 +830,7 @@ function AppShell() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomepageEntry />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/services" element={<Services />} />
