@@ -154,9 +154,11 @@ function Footer() {
       <div className="footer-intro">
         <Link className="footer-brand" to="/">
           <img src="/main-logo.jpeg" alt="Overseas Gateway logo" />
-          <span>Overseas Gateway</span>
+          <span>
+            <small>OG Infinitum's</small>
+            <strong>OVERSEAS GATEWAY</strong>
+          </span>
         </Link>
-        <p>Powered by OG Infinitum, Built for Global Dreams</p>
       </div>
       <div>
         <h3>Contact Us</h3>
@@ -176,6 +178,7 @@ function Footer() {
         <Link to="/destinations">Destinations</Link>
         <Link to="/test-preparation">Test Preparation</Link>
         <Link to="/education-loans">Education Loans</Link>
+        <a href={AMBER_ACCOMMODATION_URL} target="_blank" rel="noreferrer">Accommodation Assistance</a>
         <Link to="/eligibility">Eligibility Checker</Link>
       </div>
       <div>
@@ -256,12 +259,14 @@ function Hero() {
   );
 }
 
+const AMBER_ACCOMMODATION_URL = "https://amberstudent.com/?utm_source=overseas-gateway-1786092665&utm_medium=brand&utm_campaign=partner&partner_source=overseas-gateway-1786092665";
+
 const SERVICE_LINKS = {
   "Free Profile Evaluation": "/eligibility",
   "1-on-1 Expert Counselling": "/eligibility",
   "Test Preparation Support": "/test-preparation",
   "Education Loan Assistance": "/education-loans",
-  "Accommodation Assistance": "https://amberstudent.com/?utm_source=overseas-gateway-1786092665&utm_medium=brand&utm_campaign=partner&partner_source=overseas-gateway-1786092665"
+  "Accommodation Assistance": AMBER_ACCOMMODATION_URL
 };
 
 function ServiceCard({ service }) {

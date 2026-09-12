@@ -122,13 +122,15 @@ p {
   object-fit: contain;
 }
 
-.brand span {
+.brand span,
+.footer-brand span {
   display: grid;
   line-height: 1.1;
   min-width: 0;
 }
 
-.brand small {
+.brand small,
+.footer-brand small {
   color: var(--gold);
   font-size: 0.68rem;
   font-weight: 800;
