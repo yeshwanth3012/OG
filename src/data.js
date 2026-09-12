@@ -489,6 +489,36 @@ export const values = [
   "Future-ready development"
 ];
 
+export const bachelorCourses = [
+  "B.Tech Computer Science",
+  "B.Tech Mechanical Engineering",
+  "B.Tech Electrical Engineering",
+  "B.Tech Civil Engineering",
+  "BBA / Business Administration",
+  "B.Sc Data Science",
+  "B.Sc Biotechnology",
+  "BA Economics",
+  "BA Psychology",
+  "B.Sc Nursing",
+  "Hospitality Management",
+  "Architecture"
+];
+
+export const masterCourses = [
+  "MS in Computer Science",
+  "MS in Data Science",
+  "MS in Artificial Intelligence",
+  "MS in Cybersecurity",
+  "MS in Electrical Engineering",
+  "MS in Mechanical Engineering",
+  "MS in Civil Engineering",
+  "MS in Information Technology",
+  "MS in Biotechnology",
+  "MBA",
+  "MPH (Public Health)",
+  "MS in Finance"
+];
+
 export const blogs = [
   {
     slug: "life-of-an-indian-student-in-the-usa",

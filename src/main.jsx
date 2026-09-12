@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
-import { blogs, destinations, financePartners, getWhatsAppUrl, images, languagePrograms, partnerUniversities, programs, services, site, standardizedTests, stats, values } from "./data";
+import { bachelorCourses, blogs, destinations, financePartners, getWhatsAppUrl, images, languagePrograms, masterCourses, partnerUniversities, programs, services, site, standardizedTests, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
 
@@ -256,15 +256,31 @@ function Hero() {
   );
 }
 
+const SERVICE_LINKS = {
+  "Test Preparation Support": "/test-preparation",
+  "Education Loan Assistance": "/education-loans"
+};
+
 function ServiceCard({ service }) {
-  return (
-    <article className="card service-card">
+  const content = (
+    <>
       <img src={service.image} alt={`${service.title} support illustration`} />
       <span className="card-icon">{service.title.slice(0, 1)}</span>
       <h3>{service.title}</h3>
       <p>{service.text}</p>
-    </article>
+    </>
   );
+
+  const to = SERVICE_LINKS[service.title];
+  if (to) {
+    return (
+      <Link className="card service-card" to={to}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <article className="card service-card">{content}</article>;
 }
 
 function BadgeCard({ item }) {
@@ -372,6 +388,7 @@ function Home() {
           ))}
         </div>
       </section>
+      <UniversityAdmissions />
       <section className="section tinted">
         <SectionHeading eyebrow="Destinations" title="Popular countries for globally ambitious students." text="Explore every destination we guide students through. Hover over the slider to pause and review a country." />
         <DestinationSlider />
@@ -791,10 +808,21 @@ function ContactForm({ onSuccess }) {
   );
 }
 
+const OTHER_COURSE_OPTION = "Other (type your course)";
+
+function getCourseOptions(studyLevel) {
+  if (studyLevel === "Undergraduate") return [...bachelorCourses, OTHER_COURSE_OPTION];
+  if (studyLevel === "Postgraduate") return [...masterCourses, OTHER_COURSE_OPTION];
+  return [...bachelorCourses, ...masterCourses, OTHER_COURSE_OPTION];
+}
+
 function EligibilityForm() {
   const formRef = useRef(null);
   const [state, setState] = useState({ status: "idle", message: "" });
   const [isSubmitReady, setIsSubmitReady] = useState(false);
+  const [studyLevel, setStudyLevel] = useState("");
+  const [interestedCourse, setInterestedCourse] = useState("");
+  const courseOptions = getCourseOptions(studyLevel);
 
   function updateSubmitReady() {
     const form = formRef.current;
@@ -817,6 +845,8 @@ function EligibilityForm() {
       await sendEmailForm(form);
       form.reset();
       setIsSubmitReady(false);
+      setStudyLevel("");
+      setInterestedCourse("");
       setState({ status: "success", message: "Eligibility request submitted. Our team will review your profile and contact you." });
     } catch {
       setState({ status: "error", message: `Form submission is not available right now. Please email ${site.email} or use WhatsApp.` });
@@ -833,16 +863,31 @@ function EligibilityForm() {
     >
       <input type="hidden" name="form_type" value="Eligibility Checker" />
       <input type="hidden" name="to_email" value={site.email} />
-      <SelectField label="Study level" name="study_level" options={["Undergraduate", "Postgraduate", "Diploma", "PhD", "Not sure yet"]} required />
+      <SelectField
+        label="Study level"
+        name="study_level"
+        options={["Undergraduate", "Postgraduate", "Diploma", "PhD", "Not sure yet"]}
+        required
+        value={studyLevel}
+        onChange={(event) => {
+          setStudyLevel(event.target.value);
+          setInterestedCourse("");
+        }}
+      />
       <SelectField label="Interested countries" name="interested_countries" options={["USA", "UK", "Canada", "Australia", "Germany", "Ireland", "New Zealand", "France", "Europe", "Multiple countries"]} required />
-      <FormField label="Interested course" name="interested_course" required />
+      <SelectField
+        label="Interested course"
+        name="interested_course"
+        options={courseOptions}
+        required
+        value={interestedCourse}
+        onChange={(event) => setInterestedCourse(event.target.value)}
+      />
+      {interestedCourse === OTHER_COURSE_OPTION ? (
+        <FormField label="Please specify your course" name="interested_course_other" required />
+      ) : null}
       <SelectField label="Intake year" name="intake_year" options={["2026", "2027", "2028", "Not decided"]} required />
-      <SelectField label="Main priority" name="main_priority" options={["High salary potential", "Affordable tuition", "PR or settlement", "Top-ranked university", "Scholarship", "Fast admission"]} required />
-      <FormField label="Current qualification" name="current_qualification" required />
-      <FormField label="Academic percentage/GPA" name="academic_score" required />
       <SelectField label="English test status" name="english_test_status" options={["Not taken yet", "Planning IELTS", "Planning PTE", "Planning TOEFL", "Already have score", "Need guidance"]} required />
-      <SelectField label="Work experience" name="work_experience" options={["No experience", "Less than 1 year", "1-2 years", "3-5 years", "5+ years"]} required />
-      <SelectField label="Scholarship importance" name="scholarship_importance" options={["Very important", "Good to have", "Not required", "Need guidance"]} required />
       <FormField label="Full name" name="name" required />
       <FormField label="Mobile number" name="phone" type="tel" minLength="7" required />
       <FormField label="Email" name="email" type="email" required />
@@ -870,12 +915,13 @@ function FormField({ label, name, type = "text", required, ...props }) {
   );
 }
 
-function SelectField({ label, name, options, required = false }) {
+function SelectField({ label, name, options, required = false, value, onChange }) {
+  const valueProps = value === undefined ? { defaultValue: "" } : { value, onChange };
   return (
     <label>
       {label}
       {required ? <span className="required-mark"> *</span> : null}
-      <select name={name} defaultValue="" required={required}>
+      <select name={name} required={required} {...valueProps}>
         <option value="" disabled>Select option</option>
         {options.map((option) => <option key={option}>{option}</option>)}
       </select>
