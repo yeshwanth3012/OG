@@ -260,7 +260,8 @@ const SERVICE_LINKS = {
   "Free Profile Evaluation": "/eligibility",
   "1-on-1 Expert Counselling": "/eligibility",
   "Test Preparation Support": "/test-preparation",
-  "Education Loan Assistance": "/education-loans"
+  "Education Loan Assistance": "/education-loans",
+  "Accommodation Assistance": "https://amberstudent.com/?utm_source=overseas-gateway-1786092665&utm_medium=brand&utm_campaign=partner&partner_source=overseas-gateway-1786092665"
 };
 
 function ServiceCard({ service }) {
@@ -274,6 +275,13 @@ function ServiceCard({ service }) {
   );
 
   const to = SERVICE_LINKS[service.title];
+  if (to && /^https?:\/\//.test(to)) {
+    return (
+      <a className="card service-card" href={to} target="_blank" rel="noreferrer">
+        {content}
+      </a>
+    );
+  }
   if (to) {
     return (
       <Link className="card service-card" to={to}>
@@ -797,7 +805,7 @@ function ContactForm({ onSuccess }) {
           <option>Not sure yet</option>
         </select>
       </label>
-      <FormField label="Preferred Time" name="preferred_time" placeholder="Example: Today after 5 PM" required />
+      <FormField label="Preferred Time" name="preferred_time" type="datetime-local" required />
       <label className="wide">
         Message<span className="required-mark"> *</span>
         <textarea name="message" rows="5" required placeholder="Tell us what you need help with." />
