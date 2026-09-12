@@ -13,6 +13,7 @@ export const site = {
     { label: "Facebook", url: import.meta.env.VITE_FACEBOOK_URL || "https://www.facebook.com/" },
     { label: "LinkedIn", url: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/company/144473969/" }
   ]
+  
 };
 
 export const stats = [
