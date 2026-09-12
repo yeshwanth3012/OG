@@ -480,6 +480,11 @@ p {
   -webkit-line-clamp: 2;
 }
 
+.service-card:hover p {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
 .card-icon {
   display: inline-grid;
   place-items: center;

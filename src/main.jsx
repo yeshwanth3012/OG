@@ -257,6 +257,8 @@ function Hero() {
 }
 
 const SERVICE_LINKS = {
+  "Free Profile Evaluation": "/eligibility",
+  "1-on-1 Expert Counselling": "/eligibility",
   "Test Preparation Support": "/test-preparation",
   "Education Loan Assistance": "/education-loans"
 };
