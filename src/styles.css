@@ -480,9 +480,17 @@ p {
   -webkit-line-clamp: 2;
 }
 
-.service-card:hover p {
+.service-card:hover p,
+.service-card:focus p,
+.service-card:focus-within p {
   -webkit-line-clamp: unset;
   overflow: visible;
+}
+
+article.service-card:focus,
+article.service-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 200, 61, 0.55), var(--shadow);
 }
 
 .card-icon {

@@ -290,12 +290,16 @@ function ServiceCard({ service }) {
     );
   }
 
-  return <article className="card service-card">{content}</article>;
+  return (
+    <article className="card service-card" tabIndex={0}>
+      {content}
+    </article>
+  );
 }
 
 function BadgeCard({ item }) {
   return (
-    <article className="card service-card">
+    <article className="card service-card" tabIndex={0}>
       <img src={item.image} alt={`${item.title} preparation`} />
       <span className="test-badge">{item.code}</span>
       <h3>{item.title}</h3>
