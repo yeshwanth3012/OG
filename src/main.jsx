@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
-import { blogs, destinations, getWhatsAppUrl, images, partnerUniversities, programs, services, site, stats, values } from "./data";
+import { blogs, destinations, financePartners, getWhatsAppUrl, images, languagePrograms, partnerUniversities, programs, services, site, standardizedTests, stats, values } from "./data";
 import { sendEmailForm } from "./forms";
 import "./styles.css";
+
+const LANDING_GATE_ENABLED = true;
 
 function usePageMeta(title, description) {
   useEffect(() => {
@@ -80,12 +82,16 @@ function ScrollReveal() {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  useLocation();
+  const isUnlocked = !LANDING_GATE_ENABLED || sessionStorage.getItem("og-homepage-unlocked") === "true";
   const links = [
     ["/", "Home"],
     ["/about", "About"],
     ["/programs", "Programs"],
     ["/services", "Services"],
     ["/destinations", "Destinations"],
+    ["/test-preparation", "Test Prep"],
+    ["/education-loans", "Education Loans"],
     ["/blog", "Blog"],
     ["/eligibility", "Eligibility"],
     ["/contact", "Contact"]
@@ -100,18 +106,22 @@ function Navbar() {
           <strong>OVERSEAS GATEWAY</strong>
         </span>
       </Link>
-      <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
-        <span />
-        <span />
-        <span />
-      </button>
-      <nav className={open ? "open" : ""} aria-label="Main navigation">
-        {links.map(([href, label]) => (
-          <NavLink key={href} to={href} onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-            {label}
-          </NavLink>
-        ))}
-      </nav>
+      {isUnlocked ? (
+        <>
+          <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
+            <span />
+            <span />
+            <span />
+          </button>
+          <nav className={open ? "open" : ""} aria-label="Main navigation">
+            {links.map(([href, label]) => (
+              <NavLink key={href} to={href} onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+        </>
+      ) : null}
     </header>
   );
 }
@@ -131,11 +141,6 @@ function SocialIcon({ label }) {
     LinkedIn: (
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M6.5 8.5A2 2 0 1 1 6.5 4.5a2 2 0 0 1 0 4zM4.8 20.2h3.4V9.8H4.8v10.4zM13.2 9.6c-1.2 0-2.1.5-2.6 1.2V9.8H7.3c0 .5-.1 10.4-.1 10.4h3.3v-5.8c0-.3 0-.6.1-.8.3-.6.9-1.2 1.9-1.2 1.3 0 1.9.9 1.9 2.3v5.5h3.3v-5.9c0-3.1-1.7-4.5-3.9-4.5z" />
-      </svg>
-    ),
-    YouTube: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18.1 5 12 5 12 5s-6.1 0-7.7.3A2.7 2.7 0 0 0 2.4 7.2 28.2 28.2 0 0 0 2 12a28.2 28.2 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9C5.9 19 12 19 12 19s6.1 0 7.7-.3a2.7 2.7 0 0 0 1.9-1.9A28.2 28.2 0 0 0 22 12a28.2 28.2 0 0 0-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z" />
       </svg>
     )
   };
@@ -169,6 +174,8 @@ function Footer() {
         <Link to="/services">Services</Link>
         <Link to="/programs">Programs</Link>
         <Link to="/destinations">Destinations</Link>
+        <Link to="/test-preparation">Test Preparation</Link>
+        <Link to="/education-loans">Education Loans</Link>
         <Link to="/eligibility">Eligibility Checker</Link>
       </div>
       <div>
@@ -240,14 +247,6 @@ function Hero() {
         <p>
           Overseas Gateway helps students and parents make confident global education decisions through profile evaluation, transparent counselling, university selection, visa support, and pre-departure guidance.
         </p>
-        <div className="button-row">
-          <Link className="btn btn-primary" to="/eligibility">
-            Get Free Evaluation
-          </Link>
-          <a className="btn btn-secondary" href={getWhatsAppUrl()} target="_blank" rel="noreferrer">
-            WhatsApp Counsellor
-          </a>
-        </div>
       </div>
       <div className="hero-card">
         <img src="/main-logo.jpeg" alt="" />
@@ -264,6 +263,17 @@ function ServiceCard({ service }) {
       <span className="card-icon">{service.title.slice(0, 1)}</span>
       <h3>{service.title}</h3>
       <p>{service.text}</p>
+    </article>
+  );
+}
+
+function BadgeCard({ item }) {
+  return (
+    <article className="card service-card">
+      <img src={item.image} alt={`${item.title} preparation`} />
+      <span className="test-badge">{item.code}</span>
+      <h3>{item.title}</h3>
+      <p>{item.text}</p>
     </article>
   );
 }
@@ -530,6 +540,7 @@ function Destinations() {
   return (
     <>
       <PageHero eyebrow="Destinations" title="Choose the country that fits your goals, budget, and future." text="We help students compare destinations based on academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans." />
+      <UniversityAdmissions />
       <section className="section">
         <SectionHeading eyebrow="Study Destinations" title="Explore every country we guide students through." text="Compare academics, career outcomes, affordability, visa pathways, lifestyle, and long-term plans across our key destinations." />
         <div className="grid three">
@@ -538,7 +549,62 @@ function Destinations() {
           ))}
         </div>
       </section>
+      <UniversityAdmissions />
       <CTASection title="Not sure which country is right for you?" text="Share your profile and we will help you compare your best-fit destinations." />
+    </>
+  );
+}
+
+function TestPreparation() {
+  usePageMeta("Test Preparation", "Prepare for IELTS, TOEFL, PTE, Duolingo, GRE, GMAT, SAT, ACT, Cambridge English, German, and French with Overseas Gateway guidance.");
+  return (
+    <>
+      <PageHero eyebrow="Test Preparation" title="Score the tests that open the door to your destination." text="From English proficiency exams to admission tests and foreign language programs, we connect you with the right preparation path for your target country and course." />
+      <section className="section">
+        <SectionHeading eyebrow="Standardized Tests" title="English proficiency and admission tests we guide you through." text="Every destination and program has different test requirements. We help you pick the right test and prepare with confidence." />
+        <div className="grid three">
+          {standardizedTests.map((test) => (
+            <BadgeCard key={test.title} item={test} />
+          ))}
+        </div>
+      </section>
+      <section className="section tinted">
+        <SectionHeading eyebrow="Foreign Languages" title="Language programs for destinations that reward local language skills." text="Some countries offer tuition savings, scholarships, and stronger career options for students with local language proficiency." />
+        <div className="grid three">
+          {languagePrograms.map((language) => (
+            <BadgeCard key={language.title} item={language} />
+          ))}
+        </div>
+      </section>
+      <CTASection title="Not sure which test you need?" text="Share your destination and course preference, and we will guide you to the right test and preparation plan." />
+    </>
+  );
+}
+
+function EducationLoans() {
+  usePageMeta("Education Loans", "Explore education loan options for studying abroad through Overseas Gateway's collaborations with leading banks and NBFCs including Credila, IDFC FIRST Bank, Avanse, and Tata Capital.");
+  return (
+    <>
+      <PageHero eyebrow="Education Loans" title="Fund your global education with the right loan partner." text="We have collaborated with leading standardized banks and NBFCs to help students access secured, unsecured, and no-collateral education loans for study abroad." />
+      <section className="section">
+        <SectionHeading eyebrow="Our Loan Partners" title="Trusted banks and NBFCs we work with." text="From established banks to specialized education-focused NBFCs, we help you compare loan options and choose the one that fits your profile and destination." />
+        <div className="grid three">
+          {financePartners.map((partner) => (
+            <BadgeCard key={partner.title} item={partner} />
+          ))}
+        </div>
+      </section>
+      <section className="why-block">
+        <SectionHeading eyebrow="How We Help" title="Simplifying the education loan process." text="We guide you from loan comparison to documentation and disbursal, so financing your education never slows down your admission timeline." />
+        <div className="value-pills">
+          <span>Loan eligibility check</span>
+          <span>Collateral & non-collateral options</span>
+          <span>Documentation support</span>
+          <span>Interest rate comparison</span>
+          <span>Fast-track processing</span>
+        </div>
+      </section>
+      <CTASection title="Need help choosing the right education loan?" text="Share your admission status and funding needs, and we will connect you with the best-fit loan partner." />
     </>
   );
 }
@@ -705,7 +771,7 @@ function ContactForm({ onSuccess }) {
       <FormField label="Email" name="email" type="email" required />
       <FormField label="Phone" name="phone" type="tel" minLength="7" required />
       <label>
-        Interested Destination
+        Interested Destination<span className="required-mark"> *</span>
         <select name="destination" defaultValue="" required>
           <option value="" disabled>Select destination</option>
           {destinations.map((item) => <option key={item.country}>{item.country}</option>)}
@@ -714,7 +780,7 @@ function ContactForm({ onSuccess }) {
       </label>
       <FormField label="Preferred Time" name="preferred_time" placeholder="Example: Today after 5 PM" required />
       <label className="wide">
-        Message
+        Message<span className="required-mark"> *</span>
         <textarea name="message" rows="5" required placeholder="Tell us what you need help with." />
       </label>
       <button className="btn btn-primary wide" type="submit" disabled={state.status === "loading"}>
@@ -734,14 +800,7 @@ function EligibilityForm() {
     const form = formRef.current;
     if (!form) return;
 
-    const data = new FormData(form);
-    const ready =
-      String(data.get("study_level") || "").trim() !== "" &&
-      String(data.get("name") || "").trim() !== "" &&
-      String(data.get("phone") || "").trim().length >= 7 &&
-      String(data.get("counselling_mode") || "").trim() !== "";
-
-    setIsSubmitReady(ready);
+    setIsSubmitReady(form.checkValidity());
   }
 
   async function handleSubmit(event) {
@@ -801,11 +860,12 @@ function EligibilityForm() {
   );
 }
 
-function FormField({ label, name, type = "text", ...props }) {
+function FormField({ label, name, type = "text", required, ...props }) {
   return (
     <label>
       {label}
-      <input name={name} type={type} {...props} />
+      {required ? <span className="required-mark"> *</span> : null}
+      <input name={name} type={type} required={required} {...props} />
     </label>
   );
 }
@@ -814,6 +874,7 @@ function SelectField({ label, name, options, required = false }) {
   return (
     <label>
       {label}
+      {required ? <span className="required-mark"> *</span> : null}
       <select name={name} defaultValue="" required={required}>
         <option value="" disabled>Select option</option>
         {options.map((option) => <option key={option}>{option}</option>)}
@@ -830,11 +891,13 @@ function AppShell() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<HomepageEntry />} />
+          <Route path="/" element={LANDING_GATE_ENABLED ? <HomepageEntry /> : <Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/test-preparation" element={<TestPreparation />} />
+          <Route path="/education-loans" element={<EducationLoans />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/eligibility" element={<EligibilityChecker />} />

@@ -9,10 +9,9 @@ export const site = {
     import.meta.env.VITE_GOOGLE_MAP_EMBED ||
     "https://maps.google.com/maps?q=Lorven+Tiara,+Kondapur,+Hyderabad,+Telangana+500084&z=16&output=embed",
   socials: [
-    { label: "Instagram", url: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/" },
+    { label: "Instagram", url: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/overseasgateway_official?stkn=Y212bHRtMGJ1c2V1&utm_source=qr" },
     { label: "Facebook", url: import.meta.env.VITE_FACEBOOK_URL || "https://www.facebook.com/" },
-    { label: "LinkedIn", url: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/" },
-    { label: "YouTube", url: import.meta.env.VITE_YOUTUBE_URL || "https://www.youtube.com/" }
+    { label: "LinkedIn", url: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/company/144473969/" }
   ]
 };
 
@@ -101,6 +100,129 @@ export const services = [
     title: "Enrollment & Visa Assistance",
     image: photo("photo-1450101499163-c8848c66ca85"),
     text: "Complete university onboarding, document checks, visa filing, and formalities with confidence."
+  }
+];
+
+export const standardizedTests = [
+  {
+    title: "IELTS",
+    code: "IELTS",
+    image: photo("photo-1571260899304-425eee4c7efc"),
+    text: "International English Language Testing System, accepted widely across the UK, Canada, Australia, and Europe. We guide you through both Academic and General Training formats."
+  },
+  {
+    title: "TOEFL",
+    code: "TOEFL",
+    image: photo("photo-1519389950473-47ba0277781c"),
+    text: "Widely accepted across US universities, the TOEFL iBT measures academic English proficiency through reading, listening, speaking, and writing sections."
+  },
+  {
+    title: "PTE",
+    code: "PTE",
+    image: photo("photo-1454165804606-c3d57bc86b40"),
+    text: "The Pearson Test of English is a fast, computer-based English test accepted by universities and visa authorities in Australia, the UK, Canada, and New Zealand, known for quick results."
+  },
+  {
+    title: "Duolingo English Test",
+    code: "DET",
+    image: photo("photo-1543269865-cbf427effbad"),
+    text: "A convenient, at-home English proficiency test increasingly accepted by universities in the USA, UK, and Canada as a flexible alternative to traditional exams."
+  },
+  {
+    title: "GRE",
+    code: "GRE",
+    image: photo("photo-1521587760476-6c12a4b040da"),
+    text: "Required for many postgraduate programs in the USA, the GRE evaluates verbal reasoning, quantitative reasoning, and analytical writing skills."
+  },
+  {
+    title: "GMAT",
+    code: "GMAT",
+    image: photo("photo-1568667256549-094345857637"),
+    text: "The standard test for MBA and business master's admissions worldwide, assessing analytical, quantitative, verbal, and reasoning skills."
+  },
+  {
+    title: "SAT",
+    code: "SAT",
+    image: photo("photo-1519452575417-564c1401ecc0"),
+    text: "The Scholastic Assessment Test is a key entrance requirement for undergraduate admissions in the USA, testing reading, writing, and math skills for high school graduates."
+  },
+  {
+    title: "ACT",
+    code: "ACT",
+    image: photo("photo-1546410531-bb4caa6b424d"),
+    text: "The American College Testing exam is an alternative to the SAT for US undergraduate admissions, covering English, math, reading, and science reasoning."
+  },
+  {
+    title: "Cambridge English",
+    code: "CAE",
+    image: photo("photo-1523240795612-9a054b0db644"),
+    text: "Qualifications like B2 First and C1 Advanced are accepted by universities and employers worldwide as proof of English proficiency."
+  }
+];
+
+export const languagePrograms = [
+  {
+    title: "German",
+    code: "DE",
+    image: photo("photo-1560930950-5cc20e80e392"),
+    text: "Learn German to unlock tuition-free education and career opportunities in Germany and Austria, with structured guidance from A1 to B2 proficiency levels."
+  },
+  {
+    title: "French",
+    code: "FR",
+    image: photo("photo-1499856871958-5b9627545d1a"),
+    text: "Build French language proficiency for study and career opportunities in France and French-speaking Canada, with guided preparation up to B2 level."
+  }
+];
+
+export const financePartners = [
+  {
+    title: "Credila",
+    code: "CREDILA",
+    image: photo("photo-1521791136064-7986c2920216"),
+    text: "India's first dedicated education loan NBFC, offering secured and unsecured loans for study destinations including the USA, UK, and Canada with flexible repayment options."
+  },
+  {
+    title: "IDFC FIRST Bank",
+    code: "IDFC",
+    image: photo("photo-1601597111158-2fceff292cdc"),
+    text: "A trusted banking partner offering competitive education loan interest rates, quick processing, and support for both collateral and non-collateral loan options."
+  },
+  {
+    title: "Avanse Financial Services",
+    code: "AVANSE",
+    image: photo("photo-1526304640581-d334cdbbf45e"),
+    text: "A leading education-focused NBFC providing tailored loan solutions for undergraduate, postgraduate, and professional courses abroad."
+  },
+  {
+    title: "Tata Capital",
+    code: "TATA",
+    image: photo("photo-1563986768609-322da13575f3"),
+    text: "Backed by the Tata Group, offering structured education loans with flexible tenures and support across popular study destinations."
+  },
+  {
+    title: "Auxilo Finserve",
+    code: "AUXILO",
+    image: photo("photo-1563013544-824ae1b704d3"),
+    text: "A specialized education finance NBFC offering need-based loans with simplified documentation for students heading abroad."
+  },
+  {
+    title: "InCred",
+    code: "INCRED",
+    image: photo("photo-1554224155-8d04cb21cd6c"),
+    text: "A digital-first NBFC offering quick education loan approvals with minimal paperwork for students planning to study overseas."
+  },
+  {
+    title: "Prodigy Finance",
+    code: "PRODIGY",
+    image: photo("photo-1591696205602-2f950c417cb9"),
+    text: "An international lender offering collateral-free education loans to students admitted into select global universities, based on future earning potential."
+  },
+  {
+    title: "MPOWER Financing",
+    code: "MPOWER",
+    image: photo("photo-1579532536935-619928decd08"),
+    text: "A global lender providing no-cosigner, no-collateral education loans for international students studying in the USA and Canada."
   }
 ];
 
